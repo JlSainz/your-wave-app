@@ -1,0 +1,14 @@
+.nav-style ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 5px;
+}
+
+.nav-style li a {
+  text-decoration: none;
+  margin: 15px;
+  cursor: pointer;
+  color: green;
+}
