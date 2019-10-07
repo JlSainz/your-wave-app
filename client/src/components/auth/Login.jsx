@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+// import { Link } from "react-router-dom";
 import AuthService from "./Authservice";
 
-class Signup extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
@@ -14,13 +15,15 @@ class Signup extends Component {
     const password = this.state.password;
 
     this.service
-      .signup(username, password)
+      .login(username, password)
       .then(response => {
         this.setState({
-          username: "",
-          password: ""
+          username: username,
+          password: password,
+          error: false
         });
-        this.props.getUser(response.user);
+
+        this.props.getUser(response);
       })
       .catch(error => {
         this.setState({
@@ -39,30 +42,28 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        <h3>Welcome!, create your account next:</h3>
-
         <form onSubmit={this.handleFormSubmit}>
           <fieldset>
-            <label>Username:</label>
             <input
               type="text"
               name="username"
               value={this.state.username}
               onChange={e => this.handleChange(e)}
+              placeholder="Username"
             />
           </fieldset>
 
           <fieldset>
-            <label>Password:</label>
             <input
               type="password"
               name="password"
               value={this.state.password}
               onChange={e => this.handleChange(e)}
+              placeholder="Password"
             />
           </fieldset>
 
-          <input type="submit" value="Sign up" />
+          <input type="submit" value="Login" />
         </form>
 
         <h1>{this.state.error ? "Error" : ""}</h1>
@@ -71,4 +72,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default Login;

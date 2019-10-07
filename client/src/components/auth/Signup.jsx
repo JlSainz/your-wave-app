@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import AuthService from "./Authservice";
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
@@ -15,15 +14,13 @@ class Login extends Component {
     const password = this.state.password;
 
     this.service
-      .login(username, password)
+      .signup(username, password)
       .then(response => {
         this.setState({
-          username: username,
-          password: password,
-          error: false
+          username: "",
+          password: ""
         });
-
-        this.props.getUser(response);
+        this.props.getUser(response.user);
       })
       .catch(error => {
         this.setState({
@@ -42,30 +39,28 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <h3>Please, login to our site</h3>
-
         <form onSubmit={this.handleFormSubmit}>
           <fieldset>
-            <label>Username:</label>
             <input
               type="text"
               name="username"
               value={this.state.username}
               onChange={e => this.handleChange(e)}
+              placeholder="Username"
             />
           </fieldset>
 
           <fieldset>
-            <label>Password:</label>
             <input
               type="password"
               name="password"
               value={this.state.password}
               onChange={e => this.handleChange(e)}
+              placeholder="Password"
             />
           </fieldset>
 
-          <input type="submit" value="Login" />
+          <input type="submit" value="Sign up" />
         </form>
 
         <h1>{this.state.error ? "Error" : ""}</h1>
@@ -74,4 +69,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;

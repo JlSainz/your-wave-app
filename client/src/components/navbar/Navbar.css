@@ -1,14 +1,35 @@
-.nav-style ul {
+.nav-bar {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
-  margin: 5px;
+  border-bottom: 1px solid grey;
+  padding: 3.8px;
+  box-shadow: 0.6px 1px rgba(180, 243, 250, 0.8);
+  background: rgba(180, 243, 250, 0.7)
 }
 
-.nav-style li a {
+.search-bar input {
+  width: 1060px;
+  height: 40px;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  opacity: 0.9;
+}
+
+.search-bar button {
+  margin-left: 5px;
+  width: 50px;
+  height: 40px;
+  border: none;
+  background: transparent;
+}
+
+.nav-bar img {
+  width: 60px;
+}
+
+.nav-bar a {
   text-decoration: none;
-  margin: 15px;
-  cursor: pointer;
-  color: green;
+  color: grey;
 }

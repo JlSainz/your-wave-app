@@ -47,8 +47,7 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <React.Fragment>
-          <Redirect to="/home" />
-
+          {/* <Redirect to="/home" /> */}
           <div className="App">
             <header className="App-header">
               <Navbar
@@ -63,7 +62,7 @@ class App extends Component {
     } else {
       return (
         <React.Fragment>
-          <Redirect to="/login" />
+          {/* <Redirect to="/login" /> */}
 
           <div className="App">
             <header className="App-header">
@@ -84,6 +83,7 @@ class App extends Component {
                 />
               </Switch>
             </header>
+            <Contents />
           </div>
         </React.Fragment>
       );

@@ -36,15 +36,15 @@ class Navbar extends Component {
     } else {
       return (
         <div>
-          <nav className="nav-style">
-            <ul>
-              <li>
-                <Link to="/signup">Signup</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            </ul>
+          <nav className="nav-bar">
+            <img src="./images/logo.png" alt="logo" />
+            <form className="search-bar" action="action_page.php">
+              <input type="text" placeholder="Search..." name="search" />
+              <button type="submit">
+                <i className="fa fa-search"></i>
+              </button>
+            </form>
+            <Link to="/signup">Signup</Link>|<Link to="/login">Login</Link>
           </nav>
         </div>
       );
