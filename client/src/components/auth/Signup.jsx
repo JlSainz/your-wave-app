@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AuthService from "./Authservice";
+import "./Signup.css";
 
 class Signup extends Component {
   constructor(props) {
@@ -43,9 +44,11 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="signup">
         <form onSubmit={this.handleFormSubmit}>
+          <h3>Create your account!</h3>
           <fieldset>
+            <label className="label">Username</label>
             <input
               type="text"
               name="username"
@@ -56,6 +59,7 @@ class Signup extends Component {
             />
           </fieldset>
           <fieldset>
+            <label className="label">Lastname</label>
             <input
               type="text"
               name="lastname"
@@ -66,6 +70,7 @@ class Signup extends Component {
             />
           </fieldset>
           <fieldset>
+            <label className="label">Email</label>
             <input
               type="text"
               name="email"
@@ -76,17 +81,19 @@ class Signup extends Component {
             />
           </fieldset>
           <fieldset>
+            <label className="label">Password</label>
             <input
               type="password"
               name="password"
               value={this.state.password}
               onChange={e => this.handleChange(e)}
-              placeholder="Password"
+              placeholder="Password..."
               required
             />
           </fieldset>
-
-          <input type="submit" value="Sign up" />
+            <div className="fatherbtn">
+            <input className="button" type="submit" value="Sign up" />
+          </div>
         </form>
         <h1>{this.state.error ? "Error" : ""}</h1>
       </div>

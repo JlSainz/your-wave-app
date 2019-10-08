@@ -22,14 +22,24 @@ class Navbar extends Component {
     if (this.state.loggedInUser) {
       return (
         <nav className="nav-style">
-          <ul>
-            <li>
-              <Link onClick={this.handleLogout}>Logout</Link>
-            </li>
-          </ul>
+          <nav className="nav-bar">
+            <img src="./images/logo.png" alt="logo" />
+            <form className="search-bar" action="action_page.php">
+              <input type="text" placeholder="Search spot..." name="search" />
+              <button type="submit">
+                <i className="fa fa-search"></i>
+              </button>
+            </form>
+            <Link onClick={this.handleLogout}>Logout</Link>|
+            <img className="usuario" src="./images/usuario.svg" alt="logo" />
+          </nav>
 
           <div className="header">
-            <h2>Welcome {this.state.loggedInUser.username}</h2>
+            <h2>
+              Welcome{" "}
+              {`${this.state.loggedInUser.username}
+                ${this.state.loggedInUser.lastname} !`}
+            </h2>
           </div>
         </nav>
       );

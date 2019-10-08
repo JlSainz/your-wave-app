@@ -44,7 +44,7 @@ class Login extends Component {
       <div>
         <form onSubmit={this.handleFormSubmit}>
           <fieldset>
-            <label>email</label>
+            <label>Email</label>
             <input
               type="email"
               name="email"

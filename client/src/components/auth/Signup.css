@@ -1,0 +1,45 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup form {
+  padding: 15px;
+  margin: 5px;
+  border: 0.5px solid grey;
+  border-radius: 5px;
+  box-shadow: 0 1.5px grey;
+}
+
+.signup fieldset {
+  padding: 7px;
+}
+
+.signup h3 {
+  text-align: center;
+}
+
+.signup .label {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 10px;
+}
+
+.signup input {
+  border-radius: 3px;
+  padding: 5px;
+}
+
+form .button {
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+
+.fatherbtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/auth/Authservice";
-import Contents from "./components/contents/Contents";
+import Posts from "./components/posts/Posts";
 
 class App extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class App extends Component {
                 userInSession={this.state.loggedInUser}
                 logout={this.logout}
               />
-              <Contents />
+              <Posts />
             </header>
           </div>
         </React.Fragment>
@@ -63,7 +63,6 @@ class App extends Component {
       return (
         <React.Fragment>
           {/* <Redirect to="/login" /> */}
-
           <div className="App">
             <header className="App-header">
               <Navbar
@@ -83,7 +82,7 @@ class App extends Component {
                 />
               </Switch>
             </header>
-            <Contents />
+            <Posts />
           </div>
         </React.Fragment>
       );

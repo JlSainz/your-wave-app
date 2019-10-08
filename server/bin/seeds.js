@@ -1,47 +1,351 @@
-// Seeds file that remove all users and create 2 new users
-
-// To execute this seed, run from the root of the project
-// $ node bin/seeds.js
-
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
-
-const bcryptSalt = 10;
+const Spot = require("../models/Spot");
 
 mongoose
-  .connect('mongodb://localhost/server', {useNewUrlParser: true})
+  .connect("mongodb://localhost:27017/server", { useNewUrlParser: true })
   .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
   })
   .catch(err => {
-    console.error('Error connecting to mongo', err)
+    console.error("Error connecting to mongo", err);
   });
 
-let users = [
+const spots = [
   {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    name: "Dessert point",
+    latlng: {
+      lat: -8.739984,
+      lng: 115.838236
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Makan",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Best of bests"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Left",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 18,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
   },
   {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
+  },
+  {
+    name: "Yoyo's",
+    latlng: {
+      lat: -8.970379,
+      lng: 116.729529
+    },
+    image:
+      "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
+    nearby: "Warung Brapa",
+    consistence: "Much",
+    comment: {
+      rating: 5,
+      author: "psainz2593@gmail.com",
+      text: "Awesome"
+    },
+    wave_form: "Hollow",
+    wave_direction: "Right",
+    country: "Indonesia",
+    weather: "Hot",
+    period: 16,
+    break_type: "Reef break",
+    level: "Advanced",
+    vibe: "Friendly"
   }
-]
+];
 
-User.deleteMany()
-.then(() => {
-  return User.create(users)
-})
-.then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
-})
-.then(() => {
-  // Close properly the connection to Mongoose
-  mongoose.disconnect()
-})
-.catch(err => {
-  mongoose.disconnect()
-  throw err
-})
+const spotsToSave = spots.map(spot => ({
+  name: spot.name,
+  image: spot.image,
+  location: {
+    type: "Point",
+    coordinates: [spot.latlng.lng, spot.latlng.lat]
+  },
+  nearby: spot.nearby,
+  consistence: spot.consistence,
+  comment: [spot.comment, spot.author, spot.rating],
+  wave_form: spot.wave_form,
+  wave_direction: spot.wave_direction,
+  country: spot.country,
+  weather: spot.weather,
+  period: spot.period,
+  break_type: spot.break_type,
+  level: spot.level,
+  vibe: spot.vibe
+}));
+
+Spot.create(spotsToSave).then(() => mongoose.disconnect());
+

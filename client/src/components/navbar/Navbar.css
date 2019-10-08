@@ -4,7 +4,7 @@
   align-items: center;
   border-bottom: 1px solid grey;
   padding: 3.8px;
-  box-shadow: 1px 1px grey;
+  box-shadow: 0 1.5px rgba(76, 132, 229, 1);
   background: rgba(76, 132, 229, 1);
   color: white;
 }
@@ -35,4 +35,8 @@
 .nav-bar a {
   text-decoration: none;
   color: white;
+}
+
+.nav-bar .usuario {
+  height: 25px;
 }
