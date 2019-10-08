@@ -8,15 +8,15 @@ class AuthService {
     });
   }
 
-  signup = (username, password) => {
+  signup = (username, lastname, email, password) => {
     return this.service
-      .post("/signup", { username, password })
+      .post("/signup", { username, lastname, email, password })
       .then(response => response.data);
   };
 
-  login = (username, password) => {
+  login = (email, password) => {
     return this.service
-      .post("/login", { username, password })
+      .post("/login", { email, password })
       .then(response => response.data);
   };
 

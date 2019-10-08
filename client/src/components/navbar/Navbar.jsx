@@ -39,7 +39,7 @@ class Navbar extends Component {
           <nav className="nav-bar">
             <img src="./images/logo.png" alt="logo" />
             <form className="search-bar" action="action_page.php">
-              <input type="text" placeholder="Search..." name="search" />
+              <input type="text" placeholder="Search spot..." name="search" />
               <button type="submit">
                 <i className="fa fa-search"></i>
               </button>

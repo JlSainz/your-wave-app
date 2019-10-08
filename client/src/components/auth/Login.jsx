@@ -5,20 +5,20 @@ import AuthService from "./Authservice";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = { email: "", password: "" };
     this.service = new AuthService();
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const username = this.state.username;
+    const email = this.state.email;
     const password = this.state.password;
 
     this.service
-      .login(username, password)
+      .login(email, password)
       .then(response => {
         this.setState({
-          username: username,
+          email: email,
           password: password,
           error: false
         });
@@ -27,7 +27,7 @@ class Login extends Component {
       })
       .catch(error => {
         this.setState({
-          username: username,
+          email: email,
           password: password,
           error: true
         });
@@ -44,22 +44,26 @@ class Login extends Component {
       <div>
         <form onSubmit={this.handleFormSubmit}>
           <fieldset>
+            <label>email</label>
             <input
-              type="text"
-              name="username"
-              value={this.state.username}
+              type="email"
+              name="email"
+              value={this.state.email}
               onChange={e => this.handleChange(e)}
-              placeholder="Username"
+              placeholder="email..."
+              required
             />
           </fieldset>
 
           <fieldset>
+            <label>Password</label>
             <input
               type="password"
               name="password"
               value={this.state.password}
               onChange={e => this.handleChange(e)}
               placeholder="Password"
+              required
             />
           </fieldset>
 

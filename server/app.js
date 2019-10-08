@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const favicon = require("serve-favicon");
-const hbs = require("hbs");
 const mongoose = require("mongoose");
 const path = require("path");
 const session = require("express-session");
@@ -14,7 +13,7 @@ const cors = require("cors");
 const { DBURL } = process.env;
 mongoose.Promise = Promise;
 mongoose
-  .connect(DBURL)
+  .connect(DBURL, { useNewUrlParser: true , useUnifiedTopology: true })
   .then(() => {
     console.log(`Connected to Mongo on ${DBURL}`);
   })

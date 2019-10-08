@@ -7,8 +7,6 @@ const passport = require("passport");
 const login = (req, user) => {
   return new Promise((resolve, reject) => {
     req.login(user, err => {
-  
-
       if (err) {
         reject(new Error("Something went wrong"));
       } else {
@@ -19,42 +17,63 @@ const login = (req, user) => {
 };
 
 router.post("/signup", (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
+  console.log(req.body);
+  const { username, lastname, password, email } = req.body;
+  if (!username || !lastname || !email || !password) {
     next(new Error("You must provide valid credentials"));
   }
 
-  User.findOne({ username })
-    .then(foundUser => {
-      if (foundUser) throw new Error("Username already exists");
+  User.findOne({ username }).then(foundUser => {
+    if (foundUser) res.status(500).json({ message: "Username already exists" });
 
-      const salt = bcrypt.genSaltSync(10);
-      const hashPass = bcrypt.hashSync(password, salt);
+    const salt = bcrypt.genSaltSync(10);
+    const hashPass = bcrypt.hashSync(password, salt);
 
-      return new User({
-        username,
-        password: hashPass
-      }).save();
+    return new User({
+      username,
+      lastname,
+      email,
+      password: hashPass
     })
-    .then(savedUser => login(req, savedUser))
-    .then(user => res.json({ status: "signup & login successfully", user }))
-    .catch(e => next(e));
+      .save()
+      .then(savedUser => {
+        login(req, savedUser);
+      })
+      .catch(err => {})
+
+      .then(user => res.json({ status: "signup & login successfully", user }))
+      .catch(e => next(e));
+  });
 });
 
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, theUser, failureDetails) => {
-    if (err) next(new Error("Something went wrong"));
-    if (!theUser) next(failureDetails);
-
-    login(req, theUser).then(user => res.status(200).json(req.user));
+    if (err) {
+      res
+        .status(500)
+        .json({ message: "Something went wrong authenticating user" });
+      return;
+    }
+    // "failureDetails" contains the error messages from our logic in "LocalStrategy" { message: '...' }.
+    if (!theUser) {
+      res.status(401).json(failureDetails);
+      return;
+    }
+    // save user in session
+    req.login(theUser, err => {
+      if (err) {
+        res.status(500).json({ message: "Session save went bad." });
+        return;
+      }
+      // We are now logged in (that's why we can also send req.user)
+      res.status(200).json(theUser);
+    });
   })(req, res, next);
 });
 
 router.get("/currentuser", (req, res, next) => {
   if (req.user) {
     res.status(200).json(req.user);
-  } else {
-    next(new Error("Not logged in"));
   }
 });
 
