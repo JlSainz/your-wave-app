@@ -1,35 +1,17 @@
 .nav-bar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   border-bottom: 1px solid grey;
-  padding: 3.8px;
   box-shadow: 0 1.5px rgba(76, 132, 229, 1);
   background: rgba(76, 132, 229, 1);
   color: white;
-}
-
-.search-bar input {
-  width: 1060px;
+  width: 100%;
   height: 40px;
-  padding: 10px;
-  font-size: 15px;
-  border-radius: 10px;
-  opacity: 0.9;
-  margin-top: 5px;
 }
 
-.search-bar button {
-  margin-left: 5px;
-  width: 50px;
-  height: 40px;
-  border: none;
-  background: transparent;
-  color: white;
-}
-
-.nav-bar img {
-  width: 60px;
+.container img {
+  width: 45px;
 }
 
 .nav-bar a {
@@ -39,4 +21,12 @@
 
 .nav-bar .usuario {
   height: 25px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  align-items: center;
+  margin-left: 5px;
 }

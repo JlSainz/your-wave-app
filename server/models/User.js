@@ -18,7 +18,11 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    image: String,
+    image: {
+      type: String,
+      default: "http://localhost:3000/public/images/usuarioProf.png"
+    },
+
     favorites: [{ type: Schema.Types.ObjectId, ref: "Spot" }],
     wave_form: {
       type: String,

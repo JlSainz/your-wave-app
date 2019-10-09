@@ -31,6 +31,7 @@
 .signup input {
   border-radius: 3px;
   padding: 5px;
+  outline: 0;
 }
 
 form .button {

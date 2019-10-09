@@ -21,42 +21,22 @@ class Navbar extends Component {
   render() {
     if (this.state.loggedInUser) {
       return (
-        <nav className="nav-style">
-          <nav className="nav-bar">
+        <nav className="nav-bar">
+          <div className="container">
             <img src="./images/logo.png" alt="logo" />
-            <form className="search-bar" action="action_page.php">
-              <input type="text" placeholder="Search spot..." name="search" />
-              <button type="submit">
-                <i className="fa fa-search"></i>
-              </button>
-            </form>
-            <Link onClick={this.handleLogout}>Logout</Link>|
+            <Link onClick={this.handleLogout}>LOG OUT</Link>|
             <img className="usuario" src="./images/usuario.svg" alt="logo" />
-          </nav>
-
-          <div className="header">
-            <h2>
-              Welcome{" "}
-              {`${this.state.loggedInUser.username}
-                ${this.state.loggedInUser.lastname} !`}
-            </h2>
           </div>
         </nav>
       );
     } else {
       return (
-        <div>
-          <nav className="nav-bar">
+        <nav className="nav-bar">
+          <div className="container">
             <img src="./images/logo.png" alt="logo" />
-            <form className="search-bar" action="action_page.php">
-              <input type="text" placeholder="Search spot..." name="search" />
-              <button type="submit">
-                <i className="fa fa-search"></i>
-              </button>
-            </form>
-            <Link to="/signup">Signup</Link>|<Link to="/login">Login</Link>
-          </nav>
-        </div>
+            <Link to="/signup">SIGN UP</Link>|<Link to="/login">SIGN IN</Link>
+          </div>
+        </nav>
       );
     }
   }
