@@ -14,7 +14,7 @@ const login = (req, user) => {
       }
     });
   });
-};
+}; 
 
 router.post("/signup", (req, res, next) => {
   console.log(req.body);

@@ -4,8 +4,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
-import AuthService from "./components/auth/Authservice";
-import Posts from "./components/posts/Posts";
+import AuthService from "./components/services/Authservice";
+import Spots from "./components/spots/Spots";
 
 class App extends Component {
   constructor(props) {
@@ -47,22 +47,20 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <React.Fragment>
-          {/* <Redirect to="/home" /> */}
           <div className="App">
             <header className="App-header">
               <Navbar
                 userInSession={this.state.loggedInUser}
                 logout={this.logout}
               />
-              <Posts />
             </header>
+            <Spots />
           </div>
         </React.Fragment>
       );
     } else {
       return (
         <React.Fragment>
-          {/* <Redirect to="/login" /> */}
           <div className="App">
             <header className="App-header">
               <Navbar
@@ -82,7 +80,7 @@ class App extends Component {
                 />
               </Switch>
             </header>
-            <Posts />
+            <Spots />
           </div>
         </React.Fragment>
       );

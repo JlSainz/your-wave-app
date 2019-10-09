@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-import AuthService from "./Authservice";
+import AuthService from "./../services/Authservice";
+import "./Login.css";
 
 class Login extends Component {
   constructor(props) {
@@ -41,8 +42,9 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-login">
         <form onSubmit={this.handleFormSubmit}>
+          <h3>Sign in!</h3>
           <fieldset>
             <label>Email</label>
             <input
@@ -66,8 +68,9 @@ class Login extends Component {
               required
             />
           </fieldset>
-
-          <input type="submit" value="Login" />
+          <div className="fatherbtn">
+            <input className="button" type="submit" value="Log in" />
+          </div>
         </form>
 
         <h1>{this.state.error ? "Error" : ""}</h1>

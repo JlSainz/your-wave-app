@@ -1,0 +1,46 @@
+.container-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-login form {
+  padding: 15px;
+  margin: 5px;
+  border: 0.5px solid grey;
+  border-radius: 5px;
+  box-shadow: 0 1.5px grey;
+}
+
+.container-login fieldset {
+  padding: 7px;
+}
+
+.container-login h3 {
+  text-align: center;
+}
+
+.container-login label {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 10px;
+}
+
+.container-login input {
+  border-radius: 3px;
+  padding: 5px;
+  outline: 0;
+}
+
+form .button {
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+
+.fatherbtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

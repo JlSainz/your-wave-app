@@ -13,7 +13,7 @@ const cors = require("cors");
 const { DBURL } = process.env;
 mongoose.Promise = Promise;
 mongoose
-  .connect(DBURL, { useNewUrlParser: true , useUnifiedTopology: true })
+  .connect(DBURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log(`Connected to Mongo on ${DBURL}`);
   })
@@ -67,7 +67,7 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 app.locals.title = "Server";
 
-const authRouter = require("./routes/auth");
-app.use("/api/auth", authRouter);
+const indexRouter = require("./routes/index");
+app.use("/", indexRouter);
 
 module.exports = app;

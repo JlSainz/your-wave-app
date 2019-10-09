@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthService from "./Authservice";
+import AuthService from "./../services/Authservice";
 import "./Signup.css";
 
 class Signup extends Component {
@@ -91,7 +91,7 @@ class Signup extends Component {
               required
             />
           </fieldset>
-            <div className="fatherbtn">
+          <div className="fatherbtn">
             <input className="button" type="submit" value="Sign up" />
           </div>
         </form>
