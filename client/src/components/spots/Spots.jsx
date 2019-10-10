@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SpotsService from "./../services/SpotsService";
+import Gmaps from "./../gmaps/Gmaps";
 import "./Spots.css";
 
 export default class Spots extends Component {
@@ -18,7 +19,6 @@ export default class Spots extends Component {
   }
 
   render() {
-    console.log(this.state.data);
     return (
       <div className="container-spot">
         {this.state.data.map((spot, index) => {
@@ -30,7 +30,7 @@ export default class Spots extends Component {
               <ul>
                 {/* <li>Lat: {spot[0].latlng.lat}</li>
                 <li>Lng: {spot[0].latlng.lng}</li> */}
-                <li>Location: {spot.location.coordinates}</li>
+                {/* <li>Location: {spot.location.coordinates}</li> */}
                 <li>Nearby: {spot.nearby}</li>
                 <li>Consistence: {spot.consistence}</li>
                 <li>Commment: {spot.comment.author}</li>
@@ -42,6 +42,7 @@ export default class Spots extends Component {
                 <li>Level: {spot.level}</li>
                 <li>Vibe: {spot.vibe}</li>
               </ul>
+              <Gmaps coordinates={spot.location.coordinates} />
             </div>
           );
         })}

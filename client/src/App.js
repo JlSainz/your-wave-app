@@ -6,6 +6,7 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/services/Authservice";
 import Spots from "./components/spots/Spots";
+import Gmaps from "./components/gmaps/Gmaps";
 
 class App extends Component {
   constructor(props) {
@@ -80,7 +81,9 @@ class App extends Component {
                 />
               </Switch>
             </header>
-            <Spots />
+
+            <Spots></Spots>
+            {/* <Gmaps /> */}
           </div>
         </React.Fragment>
       );
