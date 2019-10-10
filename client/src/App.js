@@ -56,6 +56,9 @@ class App extends Component {
                 logout={this.logout}
               />
             </header>
+            <Switch>
+              <Route exact path="/create" render={() => <Create />} />
+            </Switch>
             <Spots />
           </div>
         </React.Fragment>
@@ -80,10 +83,9 @@ class App extends Component {
                   path="/login"
                   render={() => <Login getUser={this.getUser} />}
                 />
-                <Route exact path="/create" render={() => <Create/>} />
               </Switch>
             </header>
-            <Spots></Spots>
+            <Spots />
           </div>
         </React.Fragment>
       );

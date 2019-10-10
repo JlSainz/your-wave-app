@@ -14,6 +14,46 @@ class SpotsService {
     });
   };
 
+  createSpots = (
+    name,
+    location,
+    image,
+    nearby,
+    rating,
+    text,
+    wave_form,
+    wave_direction,
+    country,
+    weather,
+    period,
+    break_type,
+    level,
+    vibe,
+    consistence
+  ) => {
+    return this.service
+      .post("/api/spots/create", {
+        name,
+        location,
+        image,
+        nearby,
+        rating,
+        text,
+        wave_form,
+        wave_direction,
+        country,
+        weather,
+        period,
+        break_type,
+        level,
+        vibe,
+        consistence
+      })
+      .then(response => {
+        return response.data;
+      });
+  };
+
   // oneSpot = () => {
   //   return this.service.get("/one").then(response => {
   //     return response.data;

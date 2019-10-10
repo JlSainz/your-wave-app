@@ -29,6 +29,7 @@ class Navbar extends Component {
             <Link onClick={this.handleLogout}>LOG OUT</Link>|
             <img className="usuario" src="./images/usuario.svg" alt="logo" />
           </div>
+          <Link to="/create">Create spot!</Link>
         </nav>
       );
     } else {
