@@ -1,12 +1,14 @@
 import "./App.css";
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, Link } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/services/Authservice";
 import Spots from "./components/spots/Spots";
 import Create from "./components/create/Create";
+import Profile from "./components/Profile/Profile";
+
 // import Gmaps from "./components/gmaps/Gmaps";
 
 class App extends Component {
@@ -56,8 +58,15 @@ class App extends Component {
                 logout={this.logout}
               />
             </header>
+            <Link className="links" to="/create">
+              Create spot!
+            </Link>
+            <Link className="links" to="/profile">
+              Edit your profile
+            </Link>
             <Switch>
               <Route exact path="/create" render={() => <Create />} />
+              <Route exact path="/profile" render={() => <Profile  />} />
             </Switch>
             <Spots />
           </div>

@@ -3,7 +3,6 @@ import GoogleMapReact from "google-map-react";
 import Marker from "./Marker.tsx";
 import "./Gmaps.css";
 
-
 class SimpleMap extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +31,7 @@ class SimpleMap extends Component {
             lat={this.state.center.lat}
             lng={this.state.center.lng}
             name="My Marker"
-            color="blue"
+            color="black"
           />
         </GoogleMapReact>
       </div>

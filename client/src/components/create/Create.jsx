@@ -181,6 +181,9 @@ export default class Create extends Component {
               onChange={event => this.handleChange(event)}
               name="wave_form"
             >
+              <option value="" selected={this.state.wave_form === ""}>
+                Select wave form
+              </option>
               <option value="Fat" selected={this.state.wave_form === "Fat"}>
                 Fat
               </option>
@@ -198,6 +201,10 @@ export default class Create extends Component {
               onChange={event => this.handleChange(event)}
               name="wave_direction"
             >
+              {" "}
+              <option value="" selected={this.state.wave_direction === ""}>
+                Select wave direction
+              </option>
               <option
                 value="Left"
                 selected={this.state.wave_direction === "Left"}
@@ -221,6 +228,9 @@ export default class Create extends Component {
           <label>
             Weather
             <select onChange={event => this.handleChange(event)} name="weather">
+              <option value="" selected={this.state.weather === ""}>
+                Select weather
+              </option>
               <option value="Cold" selected={this.state.weather === "Cold"}>
                 Cold
               </option>
@@ -235,6 +245,9 @@ export default class Create extends Component {
           <label>
             Period
             <select onChange={event => this.handleChange(event)} name="period">
+              <option value="" selected={this.state.period === ""}>
+                Select period
+              </option>
               <option value="10" selected={this.state.period === "10"}>
                 10
               </option>
@@ -279,6 +292,9 @@ export default class Create extends Component {
               onChange={event => this.handleChange(event)}
               name="break_type"
             >
+              <option value="" selected={this.state.break_type === ""}>
+                Select Break type
+              </option>
               <option
                 value="Beach break"
                 selected={this.state.break_type === "Beach break"}
@@ -308,6 +324,9 @@ export default class Create extends Component {
           <label>
             Level
             <select onChange={event => this.handleChange(event)} name="level">
+              <option value="" selected={this.state.level === ""}>
+                Select level
+              </option>
               <option
                 value="Beginner"
                 selected={this.state.level === "Beginner"}
@@ -331,6 +350,9 @@ export default class Create extends Component {
           <label>
             Vibe
             <select onChange={event => this.handleChange(event)} name="vibe">
+              <option value="" selected={this.state.vibe === ""}>
+                Select vibe
+              </option>
               <option
                 value="Friendly"
                 selected={this.state.vibe === "Friendly"}
@@ -348,6 +370,9 @@ export default class Create extends Component {
           <label>
             Rating
             <select onChange={event => this.handleChange(event)} name="rating">
+              <option value="" selected={this.state.rating === ""}>
+                Rate!
+              </option>
               <option value="1" selected={this.state.rating === "1"}>
                 1
               </option>
@@ -367,6 +392,11 @@ export default class Create extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
+        {/* <label>Upload photo! </label>
+  <form action="/upload" method="post" enctype="multipart/form-data"/>
+    <input type="file" name="photo"/>
+    <input type="submit" value="Save"/>
+  </form> */}
       </div>
     );
   }

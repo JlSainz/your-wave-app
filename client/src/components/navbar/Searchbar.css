@@ -1,0 +1,8 @@
+.search-form {
+  width: 500px;
+}
+
+.search-form .input {
+  width: 500px;
+  outline: 0;
+}

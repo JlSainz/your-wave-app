@@ -62,7 +62,6 @@ router.post(
       creator: req.user._id
       // image: url
     });
-
     newSpot
       .save()
       .then(createdSpot => res.json(createdSpot))

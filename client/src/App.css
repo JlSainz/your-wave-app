@@ -1,3 +1,10 @@
 * {
   box-sizing: border-box;
 }
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 45px;
+}
