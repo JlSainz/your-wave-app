@@ -14,7 +14,7 @@ const spotSchema = new Schema({
     type: String
   },
   image: String,
-  nearby: [],
+  nearby: String,
   consistence: {
     type: String
   },

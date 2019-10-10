@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../configs/cloudinary.config");
+// const upload = require("../configs/cloudinary.config");
 // const User = require("../models/User");
 const Spot = require("../models/Spot");
 // const passport = require("passport");
@@ -16,36 +16,38 @@ router.get("/", (req, res, next) => {
 });
 
 router.post(
-  "http://localhost:3010/api/spots/add",
-  upload.single("photo"),
+  "/create",
+  // upload.single("photo"),
   (req, res, next) => {
-    const name = req.body;
-    const { location: lat, lng, type } = req.body;
-    const nearby = req.body;
-    const consistence = req.body;
-    const { comment: text, author, rating } = req.body;
-    const wave_form = req.body;
-    const wave_direction = req.body;
-    const country = req.body;
-    const weather = req.body;
-    const period = req.body;
-    const break_type = req.body;
-    const level = req.body;
-    const desired_height = req.body;
-    const vibe = req.body;
-    const { url } = req.file;
+    const {
+      name,
+      location,
+      image,
+      nearby,
+      rating,
+      text,
+      wave_form,
+      wave_direction,
+      country,
+      weather,
+      period,
+      break_type,
+      level,
+      vibe,
+      consistence
+    } = req.body;
 
     const newSpot = new Spot({
       name,
-      location: {
-        coordinates: [lng, lat],
-        type: "Point"
-      },
+      // location: {
+      //   coordinates: [lng, lat],
+      //   type: "Point"
+      // },
       nearby,
       consistence,
       comment: {
         text,
-        author,
+        author: req.user._id,
         rating
       },
       wave_form,
@@ -55,15 +57,15 @@ router.post(
       period,
       break_type,
       level,
-      desired_height,
+      // desired_height,
       vibe,
-      creator: req.user._id,
-      image: url
+      creator: req.user._id
+      // image: url
     });
 
     newSpot
       .save()
-      .then(() => res.redirect("/"))
+      .then(createdSpot => res.json(createdSpot))
       .catch(error => next(error));
   }
 );
