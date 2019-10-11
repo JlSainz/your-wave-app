@@ -6,7 +6,7 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/services/Authservice";
 import Spots from "./components/spots/Spots";
-import Create from "./components/create/Create";
+// import Create from "./components/create/Create";
 import Profile from "./components/Profile/Profile";
 import SpotCreation from "./components/SpotCreation";
 import SpotsService from "./components/services/SpotsService";
@@ -57,21 +57,24 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.loggedInUser);
     if (this.state.loggedInUser) {
+      // debugger;
       return (
         <React.Fragment>
+          <Redirect to="/" />
+          {/* <header className="App-header"> */}
+          <Navbar
+            className="App-header"
+            loggedInUser={this.state.loggedInUser}
+            logout={this.logout}
+          />
           <Switch>
             <Route
               exact
               path="/"
               render={() => (
                 <div className="App">
-                  <header className="App-header">
-                    <Navbar
-                      userInSession={this.state.loggedInUser}
-                      logout={this.logout}
-                    />
-                  </header>
                   <Link className="links" to="/create">
                     Create spot!
                   </Link>
@@ -79,25 +82,37 @@ class App extends Component {
                     Edit your profile
                   </Link>
                   <Spots spots={this.state.spots} />
-                    <Route exact path="/profile" render={() => <Profile />} />
+                  <Route exact path="/profile" render={() => <Profile />} />
                 </div>
               )}
             />
-              <Route
-                exact
-                path="/create"
-                render={()=> {
-                  return( 
-                    // <Navbar
-                    // userInSession={this.state.loggedInUser}
-                    // logout={this.logout}
-                    // />
+            <Route
+              exact
+              path="/create"
+              render={() => {
+                return (
+                  <React.Fragment>
+                    <Link className="links" to="/profile">
+                      Edit your profile
+                    </Link>
                     <SpotCreation />
-                  
-                  )
-                }}
-              />
-            <Route exact path="/profile" render={() => <Profile />} />
+                  </React.Fragment>
+                );
+              }}
+            />
+            <Route
+              exact
+              path="/profile"
+              render={() => {
+                return (
+                  <React.Fragment>
+                    <Link className="links" to="/">
+                      Home
+                    </Link>
+                  </React.Fragment>
+                );
+              }}
+            />
           </Switch>
         </React.Fragment>
       );
@@ -105,24 +120,23 @@ class App extends Component {
       return (
         <React.Fragment>
           <div className="App">
-            <header className="App-header">
-              <Navbar
-                userInSession={this.state.loggedInUser}
-                logout={this.logout}
+            <Navbar
+              userInSession={this.state.loggedInUser}
+              logout={this.logout}
+            />
+            <Switch>
+              <Route
+                exact
+                path="/signup"
+                render={() => <Signup getUser={this.getUser} />}
               />
-              <Switch>
-                <Route
-                  exact
-                  path="/signup"
-                  render={() => <Signup getUser={this.getUser} />}
-                />
-                <Route
-                  exact
-                  path="/login"
-                  render={() => <Login getUser={this.getUser} />}
-                />
-              </Switch>
-            </header>
+              <Route
+                exact
+                path="/login"
+                render={() => <Login getUser={this.getUser} />}
+              />
+            </Switch>
+
             <Spots spots={this.state.spots} />
           </div>
         </React.Fragment>

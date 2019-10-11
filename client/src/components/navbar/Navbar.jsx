@@ -11,16 +11,12 @@ class Navbar extends Component {
     this.service = new AuthService();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] });
-  }
-
   handleLogout = e => {
     this.props.logout();
   };
 
   render() {
-    if (this.state.loggedInUser) {
+    if (this.props.loggedInUser) {
       return (
         <nav className="nav-bar">
           <div className="img">
@@ -29,6 +25,11 @@ class Navbar extends Component {
           <SearchBar className="search-bar" />
           <div className="container-navbar">
             <Link onClick={this.handleLogout}>LOG OUT</Link>|
+            <p>
+              {this.props.loggedInUser
+                ? this.props.loggedInUser.username
+                : null}
+            </p>
             <img className="usuario" src="./images/usuario.svg" alt="logo" />
           </div>
         </nav>

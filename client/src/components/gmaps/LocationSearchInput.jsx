@@ -23,6 +23,7 @@ export default class LocationSearchInput extends Component {
   };
 
   render() {
+    
     return (
       <PlacesAutocomplete
         value={this.state.address}

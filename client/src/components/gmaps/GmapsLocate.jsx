@@ -11,17 +11,24 @@ class SimpleMap extends Component {
     super(props);
 
     this.state = {
-      center: {
-        lng: this.props.coordinates[0],
-        lat: this.props.coordinates[1]
-      },
+      lng: this.props.coordinates[0],
+      lat: this.props.coordinates[1],
       zoom: 10
     };
   }
 
-  // getCoordinates(lnglat) {
-
-  // }
+  getCoordinates(lnglat) {
+    this.setState(
+      {
+        ...this.state,
+        lng: lnglat.lng,
+        lat: lnglat.lat
+      },
+      () => {
+        this.props.getLocation(lnglat);
+      }
+    );
+  }
 
   render() {
     return (
@@ -35,12 +42,12 @@ class SimpleMap extends Component {
             key:
               "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDUeQXCyJDlhOtCB8JwWAk8zCxpjk6k-jo&libraries=places"
           }}
-          defaultCenter={this.state.center}
+          center={this.state}
           defaultZoom={this.state.zoom}
         >
           <Marker
-            lat={this.state.center.lat}
-            lng={this.state.center.lng}
+            lat={this.state.lng}
+            lng={this.state.lat}
             name="My Marker"
             color="black"
           />

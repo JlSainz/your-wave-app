@@ -9,7 +9,7 @@ const spotSchema = new Schema(
     },
     location: {
       type: { type: String },
-      coordinates: [Number]
+      coordinates: Array
     },
     type: {
       type: String

@@ -40,10 +40,7 @@ router.post(
 
     const newSpot = new Spot({
       name,
-      // location: {
-      //   coordinates: [lng, lat],
-      //   type: "Point"
-      // },
+      location,
       nearby,
       consistence,
       comment: {

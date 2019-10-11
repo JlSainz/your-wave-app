@@ -31,6 +31,7 @@ class SpotsService {
     vibe,
     consistence
   ) => {
+    console.log(location.coordinates + "sito");
     return this.service
       .post("/api/spots/create", {
         name,

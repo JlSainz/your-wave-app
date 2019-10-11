@@ -53,6 +53,7 @@ export default class SpotCreation extends Component {
         vibe,
         consistence
       )
+      
       .then(response => {
         this.setState({
           ...this.state,

@@ -10,7 +10,7 @@ export default class Create extends Component {
     this.state = {
       coordinates: [115.838236, -8.739984],
       name: "x",
-      location: "manololama",
+      location: "",
       image: "paquito.png",
       nearby: "x",
       rating: "3",
@@ -28,6 +28,14 @@ export default class Create extends Component {
 
     this.service = new SpotsService();
   }
+
+  getLocation = lnglat => {
+    const loct = { coordinates: [lnglat.lng, lnglat.lat], type: "Point" };
+    this.setState({
+      ...this.state,
+      location: loct
+    });
+  };
 
   handleFormSubmit = event => {
     event.preventDefault();
@@ -370,8 +378,11 @@ export default class Create extends Component {
               </option>
             </select>
           </label>
-          <input type="submit" value="Submit" />
-          <GmapsLocate coordinates={this.state.coordinates} />
+          <GmapsLocate
+            coordinates={this.state.coordinates}
+            getLocation={this.getLocation}
+          />
+          <input className="submit" type="submit" value="Submit" />
         </form>
         {/* <label>Upload photo! </label>
   <form action="/upload" method="post" enctype="multipart/form-data"/>
