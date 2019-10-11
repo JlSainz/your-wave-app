@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./Marker.tsx";
+import LocationSearchInput from "./LocationSearchInput";
+import "./GmapsLocate.css";
 
 import "./Gmaps.css";
 
@@ -17,11 +19,17 @@ class SimpleMap extends Component {
     };
   }
 
+  // getCoordinates(lnglat) {
 
+  // }
 
   render() {
     return (
       <div className="map">
+        <LocationSearchInput
+          className="location-search-input"
+          getCoordinates={lnglat => this.getCoordinates(lnglat)}
+        />
         <GoogleMapReact
           bootstrapURLKeys={{
             key:
@@ -30,7 +38,6 @@ class SimpleMap extends Component {
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
         >
-         
           <Marker
             lat={this.state.center.lat}
             lng={this.state.center.lng}

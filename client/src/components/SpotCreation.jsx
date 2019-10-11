@@ -64,7 +64,6 @@ export default class SpotCreation extends Component {
   render() {
     return (
       <div>
-        xxxxx
         <Create
           createSpots={(
             name,
@@ -102,9 +101,7 @@ export default class SpotCreation extends Component {
             )
           }
         />
-        xxxxxx
         <Spots spots={this.state.spots} />
-        xxxxx
       </div>
     );
   }

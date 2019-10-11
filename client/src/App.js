@@ -60,25 +60,45 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <React.Fragment>
-          <div className="App">
-            <header className="App-header">
-              <Navbar
-                userInSession={this.state.loggedInUser}
-                logout={this.logout}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <div className="App">
+                  <header className="App-header">
+                    <Navbar
+                      userInSession={this.state.loggedInUser}
+                      logout={this.logout}
+                    />
+                  </header>
+                  <Link className="links" to="/create">
+                    Create spot!
+                  </Link>
+                  <Link className="links" to="/profile">
+                    Edit your profile
+                  </Link>
+                  <Spots spots={this.state.spots} />
+                    <Route exact path="/profile" render={() => <Profile />} />
+                </div>
+              )}
+            />
+              <Route
+                exact
+                path="/create"
+                render={()=> {
+                  return( 
+                    // <Navbar
+                    // userInSession={this.state.loggedInUser}
+                    // logout={this.logout}
+                    // />
+                    <SpotCreation />
+                  
+                  )
+                }}
               />
-            </header>
-            <Link className="links" to="/create">
-              Create spot!
-            </Link>
-            <Link className="links" to="/profile">
-              Edit your profile
-            </Link>
-            <Switch>
-              <Route exact path="/profile" render={() => <Profile />} />
-            </Switch>
-
-            <SpotCreation />
-          </div>
+            <Route exact path="/profile" render={() => <Profile />} />
+          </Switch>
         </React.Fragment>
       );
     } else {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Create.css";
 import SpotsService from "./../services/SpotsService";
-import Gmaps from "./../gmaps/Gmaps";
+import GmapsLocate from "./../gmaps/GmapsLocate";
 
 export default class Create extends Component {
   constructor() {
@@ -371,7 +371,7 @@ export default class Create extends Component {
             </select>
           </label>
           <input type="submit" value="Submit" />
-          <Gmaps coordinates={this.state.coordinates} />
+          <GmapsLocate coordinates={this.state.coordinates} />
         </form>
         {/* <label>Upload photo! </label>
   <form action="/upload" method="post" enctype="multipart/form-data"/>

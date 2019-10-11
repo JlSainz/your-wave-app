@@ -1,0 +1,15 @@
+.map {
+  width: 400px;
+  height: 400px;
+  margin-left: 10px;
+}
+
+.map .location-search-input {
+  outline: 0;
+  width: 100%;
+  margin-top: 3px;
+}
+
+.location-search-input {
+  background: transparent;
+}
