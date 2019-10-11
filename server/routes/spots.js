@@ -8,6 +8,7 @@ const Spot = require("../models/Spot");
 
 router.get("/", (req, res, next) => {
   Spot.find({})
+    .sort({ createdAt: -1 })
     .then(allSpots => res.json({ spots: allSpots }))
     .catch(function() {
       next();
@@ -64,7 +65,17 @@ router.post(
     });
     newSpot
       .save()
-      .then(createdSpot => res.json(createdSpot))
+      .then(createdSpot => {
+        Spot.find()
+          .sort({ createdAt: -1 })
+          .then(allSpots => {
+            res.json({
+              created: true,
+              timestamp: new Date(),
+              allSpots: allSpots
+            });
+          });
+      })
       .catch(error => next(error));
   }
 );

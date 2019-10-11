@@ -4,24 +4,16 @@ import Gmaps from "./../gmaps/Gmaps";
 import "./Spots.css";
 
 export default class Spots extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      data: []
+      spots: []
     };
-    this.spServices = new SpotsService();
   }
-
-  componentDidMount() {
-    this.spServices.allSpots().then(data => {
-      this.setState({ ...this.state, data: data.spots });
-    });
-  }
-
   render() {
     return (
       <div className="container-spot">
-        {this.state.data.map((spot, index) => {
+        {this.props.spots.map((spot, index) => {
           return (
             <div className="spot" key={index}>
               <h1>Name: {spot.name}</h1>
@@ -37,7 +29,7 @@ export default class Spots extends Component {
                 <li>Wave form: {spot.wave_form}</li>
                 <li>Wave direction: {spot.wave_direction}</li>
                 <li>Weather: {spot.weather}</li>
-                <li>Perioid: {spot.period}</li>
+                <li>Period: {spot.period}</li>
                 <li>Break type: {spot.break_type}</li>
                 <li>Level: {spot.level}</li>
                 <li>Vibe: {spot.vibe}</li>

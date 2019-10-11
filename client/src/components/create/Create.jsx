@@ -1,27 +1,29 @@
 import React, { Component } from "react";
 import "./Create.css";
 import SpotsService from "./../services/SpotsService";
+import Gmaps from "./../gmaps/Gmaps";
 
 export default class Create extends Component {
   constructor() {
     super();
 
     this.state = {
-      name: "",
+      coordinates: [115.838236, -8.739984],
+      name: "x",
       location: "manololama",
       image: "paquito.png",
-      nearby: "",
-      rating: "",
-      text: "",
-      wave_form: "",
-      wave_direction: "",
-      country: "",
-      weather: "",
-      period: "",
-      break_type: "",
-      level: "",
-      vibe: "",
-      consistence: ""
+      nearby: "x",
+      rating: "3",
+      text: "r",
+      wave_form: "Fat",
+      wave_direction: "A-Frame",
+      country: "France",
+      weather: "Hot",
+      period: "13",
+      break_type: "Beach break",
+      level: "Advanced",
+      vibe: "Friendly",
+      consistence: "Yes"
     };
 
     this.service = new SpotsService();
@@ -46,63 +48,41 @@ export default class Create extends Component {
     const vibe = this.state.vibe;
     const consistence = this.state.consistence;
 
-    this.service
-      .createSpots(
-        name,
-        location,
-        image,
-        nearby,
-        rating,
-        text,
-        wave_form,
-        wave_direction,
-        country,
-        weather,
-        period,
-        break_type,
-        level,
-        vibe,
-        consistence
-      )
-      .then(response => {
-        console.log(response);
-        this.setState({
-          name: "",
-          location: "manololama",
-          image: "paquito.png",
-          nearby: "",
-          rating: "",
-          text: "",
-          wave_form: "",
-          wave_direction: "",
-          country: "",
-          weather: "",
-          period: "",
-          break_type: "",
-          level: "",
-          vibe: "",
-          consistence: ""
-        });
-      })
-      .catch(error => {
-        this.setState({
-          name: name,
-          location: "manololama",
-          image: "paquito.png",
-          nearby: nearby,
-          rating: rating,
-          text: text,
-          wave_form: wave_form,
-          wave_direction: wave_direction,
-          country: country,
-          weather: weather,
-          period: period,
-          break_type: break_type,
-          level: level,
-          vibe: vibe,
-          consistence: consistence
-        });
-      });
+    this.props.createSpots(
+      name,
+      location,
+      image,
+      nearby,
+      rating,
+      text,
+      wave_form,
+      wave_direction,
+      country,
+      weather,
+      period,
+      break_type,
+      level,
+      vibe,
+      consistence
+    );
+
+    this.setState({
+      name: "",
+      location: "",
+      image: "",
+      nearby: "",
+      rating: "",
+      text: "",
+      wave_form: "",
+      wave_direction: "",
+      country: "",
+      weather: "",
+      period: "",
+      break_type: "",
+      level: "",
+      vibe: "",
+      consistence: ""
+    });
   };
 
   handleChange = event => {
@@ -391,6 +371,7 @@ export default class Create extends Component {
             </select>
           </label>
           <input type="submit" value="Submit" />
+          <Gmaps coordinates={this.state.coordinates} />
         </form>
         {/* <label>Upload photo! </label>
   <form action="/upload" method="post" enctype="multipart/form-data"/>

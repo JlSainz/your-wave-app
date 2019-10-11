@@ -8,16 +8,19 @@ import AuthService from "./components/services/Authservice";
 import Spots from "./components/spots/Spots";
 import Create from "./components/create/Create";
 import Profile from "./components/Profile/Profile";
+import SpotCreation from "./components/SpotCreation";
+import SpotsService from "./components/services/SpotsService";
 
 // import Gmaps from "./components/gmaps/Gmaps";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedInUser: null };
+    this.state = { loggedInUser: null, spots: [] };
     this.service = new AuthService();
 
     this.fetchUser();
+    this.spServices = new SpotsService();
   }
 
   getUser = userObj => {
@@ -47,6 +50,12 @@ class App extends Component {
       });
   }
 
+  componentDidMount() {
+    this.spServices.allSpots().then(data => {
+      this.setState({ ...this.state, spots: data.spots });
+    });
+  }
+
   render() {
     if (this.state.loggedInUser) {
       return (
@@ -65,10 +74,10 @@ class App extends Component {
               Edit your profile
             </Link>
             <Switch>
-              <Route exact path="/create" render={() => <Create />} />
-              <Route exact path="/profile" render={() => <Profile  />} />
+              <Route exact path="/profile" render={() => <Profile />} />
             </Switch>
-            <Spots />
+
+            <SpotCreation />
           </div>
         </React.Fragment>
       );
@@ -94,7 +103,7 @@ class App extends Component {
                 />
               </Switch>
             </header>
-            <Spots />
+            <Spots spots={this.state.spots} />
           </div>
         </React.Fragment>
       );
