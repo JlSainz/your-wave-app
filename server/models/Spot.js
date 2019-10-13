@@ -5,7 +5,7 @@ const spotSchema = new Schema(
   {
     name: {
       type: String,
-      required: true
+      // required: true
     },
     location: {
       type: { type: String },

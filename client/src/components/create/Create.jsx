@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { Switch, Route, Redirect, Link } from "react-router-dom";
 import "./Create.css";
 import SpotsService from "./../services/SpotsService";
 import GmapsLocate from "./../gmaps/GmapsLocate";
@@ -8,10 +9,10 @@ export default class Create extends Component {
     super();
 
     this.state = {
-      coordinates: [115.838236, -8.739984],
+      coordinates: "",
       name: "x",
       location: "",
-      image: "paquito.png",
+      image: "",
       nearby: "x",
       rating: "3",
       text: "r",
@@ -37,7 +38,7 @@ export default class Create extends Component {
     });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event, photo) => {
     event.preventDefault();
 
     const name = this.state.name;
@@ -53,8 +54,16 @@ export default class Create extends Component {
     const period = this.state.period;
     const break_type = this.state.break_type;
     const level = this.state.level;
+    const desired_height = this.desired_height;
     const vibe = this.state.vibe;
     const consistence = this.state.consistence;
+    this.service.addPicture(this.state.file).then(photoData => {
+      this.setState({
+        ...this.state,
+        [photo]: photoData
+      });
+      console.log(this.state.photo);
+    });
 
     this.props.createSpots(
       name,
@@ -70,6 +79,7 @@ export default class Create extends Component {
       period,
       break_type,
       level,
+      desired_height,
       vibe,
       consistence
     );
@@ -88,6 +98,7 @@ export default class Create extends Component {
       period: "",
       break_type: "",
       level: "",
+      desired_height: "",
       vibe: "",
       consistence: ""
     });
@@ -95,13 +106,14 @@ export default class Create extends Component {
 
   handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value});
   };
 
   render() {
+    console.log(this.state.image + "esta puta mierda es");
     return (
       <div className="container">
-        <form onSubmit={event => this.handleFormSubmit(event)}>
+        <form onSubmit={event => this.handleFormSubmit(event, "image")}>
           <fieldset>
             <label>Name</label>
             <input
@@ -382,13 +394,18 @@ export default class Create extends Component {
             coordinates={this.state.coordinates}
             getLocation={this.getLocation}
           />
-          <input className="submit" type="submit" value="Submit" />
+
+          <label>Upload photo</label>
+          <form
+            onSubmit={event => this.handleFormSubmit(event, "image")}
+            action="/upload"
+            method="post"
+            encType="multipart/form-data"
+          />
+          <input type="file" name="photo" />
+          
+          <input type="submit" value="Create spot!" />
         </form>
-        {/* <label>Upload photo! </label>
-  <form action="/upload" method="post" enctype="multipart/form-data"/>
-    <input type="file" name="photo"/>
-    <input type="submit" value="Save"/>
-  </form> */}
       </div>
     );
   }

@@ -17,15 +17,13 @@ export default class Spots extends Component {
           return (
             <div className="spot" key={index}>
               <h1>Name: {spot.name}</h1>
-              <img src={spot.image} alt="Foto" />
+              <img src={spot.image} alt="Photo" />
               <p>Country: {spot.country}</p>
               <ul>
-                {/* <li>Lat: {spot[0].latlng.lat}</li>
-                <li>Lng: {spot[0].latlng.lng}</li> */}
-                {/* <li>Location: {spot.location.coordinates}</li> */}
                 <li>Nearby: {spot.nearby}</li>
                 <li>Consistence: {spot.consistence}</li>
-                <li>Commment: {spot.comment.author}</li>
+                <li>Commment: {spot.comment.text}</li>
+                <li>Rating: {spot.comment.rating}</li>
                 <li>Wave form: {spot.wave_form}</li>
                 <li>Wave direction: {spot.wave_direction}</li>
                 <li>Weather: {spot.weather}</li>
@@ -33,8 +31,10 @@ export default class Spots extends Component {
                 <li>Break type: {spot.break_type}</li>
                 <li>Level: {spot.level}</li>
                 <li>Vibe: {spot.vibe}</li>
+                <li>Coordinates: {spot.location.coordinates}</li>
               </ul>
               <Gmaps coordinates={spot.location.coordinates} />
+              <button>Get Forecast!</button>
             </div>
           );
         })}

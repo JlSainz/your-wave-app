@@ -57,13 +57,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.loggedInUser);
     if (this.state.loggedInUser) {
-      // debugger;
       return (
         <React.Fragment>
           <Redirect to="/" />
-          {/* <header className="App-header"> */}
           <Navbar
             className="App-header"
             loggedInUser={this.state.loggedInUser}
@@ -79,7 +76,7 @@ class App extends Component {
                     Create spot!
                   </Link>
                   <Link className="links" to="/profile">
-                    Edit your profile
+                    Your wave
                   </Link>
                   <Spots spots={this.state.spots} />
                   <Route exact path="/profile" render={() => <Profile />} />
@@ -93,7 +90,7 @@ class App extends Component {
                 return (
                   <React.Fragment>
                     <Link className="links" to="/profile">
-                      Edit your profile
+                      Your wave
                     </Link>
                     <SpotCreation />
                   </React.Fragment>
@@ -109,6 +106,7 @@ class App extends Component {
                     <Link className="links" to="/">
                       Home
                     </Link>
+                    <Profile/>
                   </React.Fragment>
                 );
               }}

@@ -31,7 +31,6 @@ class SpotsService {
     vibe,
     consistence
   ) => {
-    console.log(location.coordinates + "sito");
     return this.service
       .post("/api/spots/create", {
         name,
@@ -53,6 +52,19 @@ class SpotsService {
       .then(response => {
         return response.data;
       });
+  };
+
+  addPicture = file => {
+    const formData = new FormData();
+    formData.append("photo", file);
+    return this.service
+      .post("/api/spots/create", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then(res => res.data)
+      .catch(this.errHandler);
   };
 
   // oneSpot = () => {
