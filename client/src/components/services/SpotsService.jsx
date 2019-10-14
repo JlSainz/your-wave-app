@@ -9,7 +9,7 @@ class SpotsService {
   }
 
   allSpots = () => {
-    return this.service.get("/api/spots").then(response => {
+    return this.service.get("/spots").then(response => {
       return response.data;
     });
   };
@@ -33,7 +33,7 @@ class SpotsService {
     imageURL
   ) => {
     return this.service
-      .post("/api/spots/create", {
+      .post("/spots/create", {
         name,
         location,
         nearby,
@@ -61,7 +61,7 @@ class SpotsService {
     formData.append("photo", file);
 
     return this.service
-      .post("/api/spots/create/photo", formData, {
+      .post("/spots/create/photo", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }

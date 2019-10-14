@@ -36,7 +36,6 @@ export default class OneSpot extends Component {
   };
 
   render() {
-    console.log(process.env.REACT_APP_API_KEY);
     const { spot } = this.state;
     return (
       <div className="spot">
