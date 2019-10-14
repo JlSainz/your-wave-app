@@ -17,7 +17,7 @@ export default class Spots extends Component {
           return (
             <div className="spot" key={index}>
               <h1>Name: {spot.name}</h1>
-              <img src={spot.image} alt="Photo" />
+              <img src={spot.imageURL} alt="Photo" />
               <p>Country: {spot.country}</p>
               <ul>
                 <li>Nearby: {spot.nearby}</li>

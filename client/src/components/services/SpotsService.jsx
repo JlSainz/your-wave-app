@@ -17,7 +17,6 @@ class SpotsService {
   createSpots = (
     name,
     location,
-    image,
     nearby,
     rating,
     text,
@@ -28,14 +27,15 @@ class SpotsService {
     period,
     break_type,
     level,
+    desired_height,
     vibe,
-    consistence
+    consistence,
+    imageURL
   ) => {
     return this.service
       .post("/api/spots/create", {
         name,
         location,
-        image,
         nearby,
         rating,
         text,
@@ -46,8 +46,10 @@ class SpotsService {
         period,
         break_type,
         level,
+        desired_height,
         vibe,
-        consistence
+        consistence,
+        imageURL
       })
       .then(response => {
         return response.data;
@@ -57,8 +59,9 @@ class SpotsService {
   addPicture = file => {
     const formData = new FormData();
     formData.append("photo", file);
+
     return this.service
-      .post("/api/spots/create", formData, {
+      .post("/api/spots/create/photo", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }

@@ -24,7 +24,8 @@ export default class Create extends Component {
       break_type: "Beach break",
       level: "Advanced",
       vibe: "Friendly",
-      consistence: "Yes"
+      consistence: "Yes",
+      imageURL: ""
     };
 
     this.service = new SpotsService();
@@ -38,12 +39,11 @@ export default class Create extends Component {
     });
   };
 
-  handleFormSubmit = (event, photo) => {
+  handleFormSubmit = event => {
     event.preventDefault();
 
     const name = this.state.name;
     const location = this.state.location;
-    const image = this.state.image;
     const nearby = this.state.nearby;
     const rating = this.state.rating;
     const text = this.state.text;
@@ -57,18 +57,11 @@ export default class Create extends Component {
     const desired_height = this.desired_height;
     const vibe = this.state.vibe;
     const consistence = this.state.consistence;
-    this.service.addPicture(this.state.file).then(photoData => {
-      this.setState({
-        ...this.state,
-        [photo]: photoData
-      });
-      console.log(this.state.photo);
-    });
+    const imageURL = this.state.imageURL;
 
     this.props.createSpots(
       name,
       location,
-      image,
       nearby,
       rating,
       text,
@@ -81,7 +74,8 @@ export default class Create extends Component {
       level,
       desired_height,
       vibe,
-      consistence
+      consistence,
+      imageURL
     );
 
     this.setState({
@@ -100,14 +94,33 @@ export default class Create extends Component {
       level: "",
       desired_height: "",
       vibe: "",
-      consistence: ""
+      consistence: "",
+      imageURL: ""
     });
   };
 
   handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value});
+    this.setState({ [name]: value });
   };
+
+  onPhotoChange(image) {
+    const filename = image.target.value;
+
+    this.setState({
+      ...this.state,
+      image: image.target.files[0]
+    });
+  }
+
+  upload() {
+    this.service.addPicture(this.state.image).then(imageURL => {
+      this.setState({
+        ...this.state,
+        imageURL: imageURL
+      });
+    });
+  }
 
   render() {
     console.log(this.state.image + "esta puta mierda es");
@@ -390,21 +403,28 @@ export default class Create extends Component {
               </option>
             </select>
           </label>
+          <input
+            type="button"
+            value="Create spot!"
+            onClick={e => this.handleFormSubmit(e)}
+          />
+
+          <label>Upload photo</label>
+          {this.state.imageURL && <img src={this.state.imageURL} />}
+          <input
+            type="file"
+            name="photo"
+            onChange={e => this.onPhotoChange(e)}
+          />
+          <input
+            type="button"
+            value="Upload photo"
+            onClick={() => this.upload()}
+          />
           <GmapsLocate
             coordinates={this.state.coordinates}
             getLocation={this.getLocation}
           />
-
-          <label>Upload photo</label>
-          <form
-            onSubmit={event => this.handleFormSubmit(event, "image")}
-            action="/upload"
-            method="post"
-            encType="multipart/form-data"
-          />
-          <input type="file" name="photo" />
-          
-          <input type="submit" value="Create spot!" />
         </form>
       </div>
     );

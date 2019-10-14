@@ -21,7 +21,6 @@ export default class SpotCreation extends Component {
   createNewSpot(
     name,
     location,
-    image,
     nearby,
     rating,
     text,
@@ -32,14 +31,15 @@ export default class SpotCreation extends Component {
     period,
     break_type,
     level,
+    desired_height,
     vibe,
-    consistence
+    consistence,
+    imageURL
   ) {
     this.spServices
       .createSpots(
         name,
         location,
-        image,
         nearby,
         rating,
         text,
@@ -50,10 +50,12 @@ export default class SpotCreation extends Component {
         period,
         break_type,
         level,
+        desired_height,
         vibe,
-        consistence
+        consistence,
+        imageURL
       )
-      
+
       .then(response => {
         this.setState({
           ...this.state,
@@ -69,7 +71,6 @@ export default class SpotCreation extends Component {
           createSpots={(
             name,
             location,
-            image,
             nearby,
             rating,
             text,
@@ -80,13 +81,14 @@ export default class SpotCreation extends Component {
             period,
             break_type,
             level,
+            desired_height,
             vibe,
-            consistence
+            consistence,
+            imageURL
           ) =>
             this.createNewSpot(
               name,
               location,
-              image,
               nearby,
               rating,
               text,
@@ -97,8 +99,10 @@ export default class SpotCreation extends Component {
               period,
               break_type,
               level,
+              desired_height,
               vibe,
-              consistence
+              consistence,
+              imageURL
             )
           }
         />
