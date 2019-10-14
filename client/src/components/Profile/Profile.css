@@ -1,13 +1,8 @@
 .container-profile {
   border: 1px solid black;
-  width: 80VW;
-  height: 70vh;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
-.container-profile img{
-  width: 100px;
+.container-profile form {
+  display: flex;
+  align-items: center;
 }
