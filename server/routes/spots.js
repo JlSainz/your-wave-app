@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../configs/cloudinary.config");
+const uploadCloud = require("../configs/cloudinary.config");
 // const User = require("../models/User");
 const Spot = require("../models/Spot");
-
-
 
 router.get("/", (req, res, next) => {
   Spot.find({})
@@ -16,7 +14,11 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.post("/create", upload.single("photo"), (req, res, next) => {
+router.post("/create/photo", uploadCloud.single("photo"), (req, res, next) => {
+  res.json(req.file.url);
+});
+
+router.post("/create", (req, res, next) => {
   const {
     name,
     location,
@@ -33,7 +35,8 @@ router.post("/create", upload.single("photo"), (req, res, next) => {
     level,
     desired_height,
     vibe,
-    consistence
+    consistence,
+    imageURL
   } = req.body;
 
   const newSpot = new Spot({
@@ -55,7 +58,8 @@ router.post("/create", upload.single("photo"), (req, res, next) => {
     break_type,
     level,
     desired_height,
-    vibe
+    vibe,
+    imageURL
   });
   newSpot
     .save()

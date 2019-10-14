@@ -19,7 +19,8 @@ const spots = [
       lat: -8.739984,
       lng: 115.838236
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Makan",
     consistence: "Much",
@@ -43,7 +44,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -67,7 +69,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -91,7 +94,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -115,7 +119,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -139,7 +144,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -163,7 +169,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -187,7 +194,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -211,7 +219,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -235,7 +244,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -259,7 +269,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -283,7 +294,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -307,7 +319,8 @@ const spots = [
       lat: -8.970379,
       lng: 116.729529
     },
-    image:
+    imageURL
+    :
       "https://d14fqx6aetz9ka.cloudfront.net/wp-content/uploads/2017/09/28152001/092817-desert-point-promo.jpg",
     nearby: "Warung Brapa",
     consistence: "Much",
@@ -329,7 +342,8 @@ const spots = [
 
 const spotsToSave = spots.map(spot => ({
   name: spot.name,
-  image: spot.image,
+  imageURL
+  : spot.imageURL,
   location: {
     type: "Point",
     coordinates: [spot.latlng.lng, spot.latlng.lat]

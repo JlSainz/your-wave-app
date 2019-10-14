@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const spotSchema = new Schema(
   {
     name: {
-      type: String,
+      type: String
       // required: true
     },
     location: {
@@ -14,7 +14,6 @@ const spotSchema = new Schema(
     type: {
       type: String
     },
-    image: String,
     nearby: String,
     consistence: {
       type: String
@@ -113,7 +112,8 @@ const spotSchema = new Schema(
     vibe: {
       type: String,
       enum: ["Friendly", "Unfriendly"]
-    }
+    },
+    imageURL: String
   },
   { timestamps: true }
 );

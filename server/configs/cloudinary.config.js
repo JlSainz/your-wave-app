@@ -8,15 +8,17 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const storage = cloudinaryStorage({
-  cloudinary,
-  folder: "cloudinary-example",
-  allowedFormats: ["jpg", "png", "svg"],
-  function(req, file, cb) {
-    cb(null, file.originalname);
+var storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "pepe2593",
+  allowedFormats: ["jpg", "png"],
+  //remember you can create your custom filename pattern
+  filename: function(req, file, cb) {
+    console.log("file from cloudinaryStorage");
+    cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
   }
 });
 
-const upload = multer({ storage });
+const uploadCloud = multer({ storage });
 
-module.exports = upload;
+module.exports = uploadCloud;
