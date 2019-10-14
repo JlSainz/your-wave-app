@@ -13,7 +13,7 @@ class SimpleMap extends Component {
     this.state = {
       lng: this.props.coordinates[0],
       lat: this.props.coordinates[1],
-      zoom: 10
+      zoom: 11,
     };
   }
 

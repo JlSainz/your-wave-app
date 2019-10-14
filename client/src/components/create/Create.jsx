@@ -9,7 +9,7 @@ export default class Create extends Component {
     super();
 
     this.state = {
-      coordinates: "",
+      coordinates: [115.838236, -8.739984],
       name: "x",
       location: "",
       image: "",
@@ -123,7 +123,6 @@ export default class Create extends Component {
   }
 
   render() {
-    console.log(this.state.image + "esta puta mierda es");
     return (
       <div className="container">
         <form onSubmit={event => this.handleFormSubmit(event, "image")}>

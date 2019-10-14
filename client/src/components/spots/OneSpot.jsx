@@ -12,17 +12,16 @@ export default class OneSpot extends Component {
 
   static getDerivedStateFromProps(props, state) {
     state.spot = props.spot;
-    // console.log(props.spot.location.coordinates[0]);
   }
 
   getMeteo = () => {
     console.log("GETTING FORECAST...");
-    // const lng = props.spot.location.coordinates[0];
-    // const lat = props.spot.location.coordinates[1];
-    const lng = 115.838236;
-    const lat = -8.739984;
+
+    const lng = this.state.spot.location.coordinates[0];
+    const lat = this.state.spot.location.coordinates[1];
+
     // const params = "swellHeight, waveHeight,seaLevel, windDirection, windSpeed";
-    // "time,airTemperature,swellDirection, swellHeight, swellPeriod, waterTemperature, waveDirection, waveHeight, wavePeriod,seaLevel, windDirection, windSpeed";
+    // ("time,airTemperature,swellDirection, swellHeight, swellPeriod, waterTemperature, waveDirection, waveHeight, wavePeriod,seaLevel, windDirection, windSpeed");
 
     fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`, {
       headers: {
