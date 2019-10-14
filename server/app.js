@@ -28,7 +28,7 @@ const debug = require("debug")(
 
 const app = express();
 
-var whitelist = ["http://localhost:3000"];
+var whitelist = [process.env.API_URL];
 var corsOptions = {
   origin: function(origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;

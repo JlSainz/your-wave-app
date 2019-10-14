@@ -3,7 +3,7 @@ import axios from "axios";
 class SpotsService {
   constructor() {
     this.service = axios.create({
-      baseURL: `http://localhost:3010`,
+      baseURL: process.env.API_URL,
       withCredentials: true
     });
   }

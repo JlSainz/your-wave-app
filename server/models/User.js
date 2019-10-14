@@ -20,7 +20,7 @@ const userSchema = new Schema(
     },
     image: {
       type: String,
-      default: "http://localhost:3000/public/images/usuarioProf.png"
+      
     },
 
     favorites: [{ type: Schema.Types.ObjectId, ref: "Spot" }],
