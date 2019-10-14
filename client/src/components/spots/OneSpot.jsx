@@ -25,8 +25,7 @@ export default class OneSpot extends Component {
 
     fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`, {
       headers: {
-        Authorization:
-          "807b335c-e8f5-11e9-80bf-0242ac130004-807b347e-e8f5-11e9-80bf-0242ac130004"
+        Authorization: process.env.REACT_APP_API_KEY
       }
     })
       .then(response => response.json())
@@ -37,6 +36,7 @@ export default class OneSpot extends Component {
   };
 
   render() {
+    console.log(process.env.REACT_APP_API_KEY);
     const { spot } = this.state;
     return (
       <div className="spot">

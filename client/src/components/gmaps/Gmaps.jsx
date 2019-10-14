@@ -17,20 +17,16 @@ class SimpleMap extends Component {
     };
   }
 
-
-
   render() {
     return (
       <div className="map">
         <GoogleMapReact
           bootstrapURLKeys={{
-            key:
-              "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDUeQXCyJDlhOtCB8JwWAk8zCxpjk6k-jo&libraries=places"
+            key: process.env.REACT_APP_API_KEY
           }}
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
         >
-         
           <Marker
             lat={this.state.center.lat}
             lng={this.state.center.lng}
