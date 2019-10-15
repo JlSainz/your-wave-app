@@ -19,8 +19,7 @@ const userSchema = new Schema(
       required: true
     },
     image: {
-      type: String,
-      
+      type: String
     },
 
     favorites: [{ type: Schema.Types.ObjectId, ref: "Spot" }],

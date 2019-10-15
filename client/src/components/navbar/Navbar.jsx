@@ -11,7 +11,6 @@ class Navbar extends Component {
     this.service = new AuthService();
   }
 
-
   handleLogout = e => {
     this.props.logout();
   };
@@ -24,14 +23,18 @@ class Navbar extends Component {
             <img src="./images/logo.png" alt="logo" />
           </div>
           <SearchBar className="search-bar" />
-          <div className="container-navbar">
-            <Link onClick={this.handleLogout}>LOG OUT</Link>
-            <img className="usuario" src="./images/usuario.svg" alt="logo" />
-            <p>
-              {this.props.loggedInUser
-                ? this.props.loggedInUser.username
-                : null}
-            </p>
+          <div className="container-navbar-logged">
+            <Link to="/">HOME</Link> |
+            <Link onClick={this.handleLogout}>LOG OUT</Link> |
+            <Link to="/create">NEW SPOT</Link> |
+            {/* <img className="usuario" src="./images/usuario.svg" alt="logo" /> */}
+            <Link to="/profile">
+              <p>
+                {this.props.loggedInUser
+                  ? this.props.loggedInUser.username
+                  : null}
+              </p>
+            </Link>
           </div>
         </nav>
       );

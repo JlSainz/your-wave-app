@@ -22,10 +22,11 @@ export default class OneSpot extends Component {
 
     // const params = "swellHeight, waveHeight,seaLevel, windDirection, windSpeed";
     // ("time,airTemperature,swellDirection, swellHeight, swellPeriod, waterTemperature, waveDirection, waveHeight, wavePeriod,seaLevel, windDirection, windSpeed");
-
+    console.log(process.env)
     fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`, {
       headers: {
-        Authorization: process.env.REACT_APP_API_KEY
+        Authorization:`${process.env.REACT_APP_API_KEY}`
+          
       }
     })
       .then(response => response.json())

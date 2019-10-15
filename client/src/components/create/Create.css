@@ -1,3 +1,100 @@
 .container .submit {
   margin-top: 25px;
 }
+
+.container {
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: rgb(102, 45, 253);
+  background: linear-gradient(0deg, rgba(102, 45, 253, 0) 0%, rgba(203, 226, 241, 0.8) 0%);
+  z-index: 4;
+}
+
+.container form {
+  background: rgba(250, 251, 253, 0.95);
+  padding: 15px;
+  margin: 5px;
+  border: 1.5px solid rgb(59, 125, 239);
+  border-radius: 10px;
+  box-shadow: 0 3px rgba(59, 125, 239, 0.6);
+  width: 90vw;
+  height: 80vh;
+  color: rgb(59, 125, 239);
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cont1 {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cont2 {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center
+}
+
+*/ .cont3 {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forms {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+}
+
+.cont-map {
+  padding: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  margin-right: 85px;
+}
+
+.map {
+  margin-right: 100px;
+}
+
+.cloudinary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cloudinary img {
+  margin-top: 12px;
+  width: 350px;
+  height: 370px;
+  position: fixed;
+  margin-left: 40px;
+  overflow: hidden;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}

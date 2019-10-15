@@ -72,12 +72,6 @@ class App extends Component {
               path="/"
               render={() => (
                 <div className="App">
-                  <Link className="links" to="/create">
-                    Create spot!
-                  </Link>
-                  <Link className="links" to="/profile">
-                    Your wave
-                  </Link>
                   <Spots spots={this.state.spots} />
                   <Route exact path="/profile" render={() => <Profile />} />
                 </div>
@@ -89,9 +83,6 @@ class App extends Component {
               render={() => {
                 return (
                   <React.Fragment>
-                    <Link className="links" to="/profile">
-                      Your wave
-                    </Link>
                     <SpotCreation />
                   </React.Fragment>
                 );
@@ -103,10 +94,7 @@ class App extends Component {
               render={() => {
                 return (
                   <React.Fragment>
-                    <Link className="links" to="/">
-                      Home
-                    </Link>
-                    <Profile/>
+                    <Profile />
                   </React.Fragment>
                 );
               }}

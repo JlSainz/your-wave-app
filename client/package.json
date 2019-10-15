@@ -16,7 +16,7 @@
     "webpack": "^4.41.0"
   },
 "scripts": {
-  "start": "react-scripts start",
+  "start": "dotenv -e .env.dev react-scripts start",
   "build": "react-scripts build",
   "build-dev": "dotenv -e .env.dev react-scripts build",
   "build-prod": "dotenv -e .env.prod  react-scripts build",

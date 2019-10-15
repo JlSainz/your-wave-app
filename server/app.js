@@ -28,7 +28,7 @@ const debug = require("debug")(
 
 const app = express();
 
-var whitelist = [process.env.API_URL];
+var whitelist = ["http://localhost:3000"];
 var corsOptions = {
   origin: function(origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -60,8 +60,8 @@ app.use(
 );
 require("./passport")(app);
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
@@ -70,7 +70,8 @@ app.locals.title = "Server";
 const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
 
-app.use((req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
+// app.use((req, res) => {
+//   res.sendFile(__dirname + "/public/index.html");
+// });
+
 module.exports = app;

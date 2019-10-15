@@ -3,7 +3,7 @@ import axios from "axios";
 class SpotsService {
   constructor() {
     this.service = axios.create({
-      baseURL: process.env.API_URL,
+      baseURL: `${process.env.REACT_APP_API_URL}`,
       withCredentials: true
     });
   }
@@ -52,6 +52,7 @@ class SpotsService {
         imageURL
       })
       .then(response => {
+        console.log(response.data);
         return response.data;
       });
   };
