@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const uploadCloud = require("../configs/cloudinary.config");
 // const User = require("../models/User");
+const meteo = require("../api");
 const Spot = require("../models/Spot");
 
 router.get("/", (req, res, next) => {
@@ -75,6 +76,10 @@ router.post("/create", (req, res, next) => {
         });
     })
     .catch(error => next(error));
+});
+
+router.get("/getForecast", (req, res, next) => {
+  res.status(200).json(meteo);
 });
 
 module.exports = router;

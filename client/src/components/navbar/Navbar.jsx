@@ -44,7 +44,8 @@ class Navbar extends Component {
           <img src="./images/logo.png" alt="logo" />
           <SearchBar className="search-bar" />
           <div className="container-navbar">
-            <Link to="/signup">SIGN UP</Link>|<Link to="/login">LOG IN</Link>
+            <Link to="/">HOME</Link> |<Link to="/signup">SIGN UP</Link>|
+            <Link to="/login">LOG IN</Link>
           </div>
         </nav>
       );

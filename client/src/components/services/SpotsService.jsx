@@ -3,13 +3,13 @@ import axios from "axios";
 class SpotsService {
   constructor() {
     this.service = axios.create({
-      baseURL: `${process.env.REACT_APP_API_URL}`,
+      baseURL: `${process.env.REACT_APP_API_URL}/api/spots`,
       withCredentials: true
     });
   }
 
   allSpots = () => {
-    return this.service.get("/api/spots").then(response => {
+    return this.service.get("/").then(response => {
       return response.data;
     });
   };
@@ -33,7 +33,7 @@ class SpotsService {
     imageURL
   ) => {
     return this.service
-      .post("/api/spots/create", {
+      .post("/create", {
         name,
         location,
         nearby,
@@ -62,7 +62,7 @@ class SpotsService {
     formData.append("photo", file);
 
     return this.service
-      .post("/api/spots/create/photo", formData, {
+      .post("/create/photo", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -70,6 +70,11 @@ class SpotsService {
       .then(res => res.data)
       .catch(this.errHandler);
   };
+
+  getForecast = () => {
+    return this.service.get('/getForecast')
+    .then(response => response.data)
+  }
 
   // oneSpot = () => {
   //   return this.service.get("/one").then(response => {

@@ -435,7 +435,6 @@ export default class Create extends Component {
               value="Create spot!"
               onClick={e => this.handleFormSubmit(e)}
             />
-            {/* Spot location please! */}
             <GmapsLocate
               className="map"
               coordinates={this.state.coordinates}

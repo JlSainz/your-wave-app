@@ -1,7 +1,41 @@
 .container-spot {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .spot {
   border: 1px solid black;
+}
+
+div.one-spot {
+  width: 100%;
+  height: 100%;
+  /* transform: scale(0); */
+  transform: scale(1);
+  position: fixed;
+  transition: 0.7s all ease;
+  /* top: 0; desde en medio */
+  top: -100%;
+}
+
+div.one-spot.display {
+  transform: scale(1);
+  /* //cambiar top */
+  top: 0;
+}
+
+div.filter {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(34, 193, 195, 0.95);
+  opacity: 0.7;
+  position: fixed;
+}
+
+div.full-info {
+  width: 80%;
+  height: 80%;
+  background: white;
+  position: fixed;
+  top: 10%;
+  left: 10%
 }
