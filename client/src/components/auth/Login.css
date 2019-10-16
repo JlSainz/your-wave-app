@@ -1,52 +1,3 @@
-/* .container-login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.container-login form {
-  padding: 15px;
-  margin: 5px;
-  border: 0.5px solid grey;
-  border-radius: 5px;
-  box-shadow: 0 1.5px grey;
-}
-
-.container-login fieldset {
-  padding: 7px;
-}
-
-.container-login h3 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.container-login label {
-  margin-bottom: 5px;
-  display: flex;
-  justify-content: flex-start;
-  font-size: 10px;
-}
-
-.container-login input {
-  border-radius: 3px;
-  padding: 5px;
-  outline: 0;
-}
-
-form .button {
-  border: 1px solid blue;
-  border-radius: 5px;
-}
-
-.fatherbtn {
-  margin-top: 60px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-} */
-
 .container-login {
   display: flex;
   flex-direction: column;
@@ -55,8 +6,8 @@ form .button {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background: rgb(102, 45, 253);
-  background: linear-gradient(0deg, rgba(102, 45, 253, 0) 0%, rgba(203, 226, 241, 0.8) 0%);
+  background: black;
+  opacity: 0.7;
   z-index: 1;
 }
 

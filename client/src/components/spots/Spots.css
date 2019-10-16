@@ -1,9 +1,32 @@
 .container-spot {
-  margin-top: 20px;
+  margin-top: 70px;
+  /* position:absolute;  */
+  display: grid;
+  grid-gap: 5px 5px;
+  grid-template-columns: auto auto auto;
 }
 
 .spot {
   border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 2px;
+  text-align: center;
+  background: transparent;
+  transition: 0.3s all ease;
+}
+
+.spot:hover{
+  border: 1px solid black;
+  color: red;
+  width:101%;
+  height:101%;
+}
+
+
+
+.spot img{
+  width: 100%;
 }
 
 div.one-spot {
@@ -12,7 +35,7 @@ div.one-spot {
   /* transform: scale(0); */
   transform: scale(1);
   position: fixed;
-  transition: 0.7s all ease;
+  transition: 0.4s all ease;
   /* top: 0; desde en medio */
   top: -100%;
 }
@@ -26,7 +49,8 @@ div.one-spot.display {
 div.filter {
   width: 100vw;
   height: 100vh;
-  background: rgba(34, 193, 195, 0.95);
+  /* background: rgba(34, 193, 195, 0.95); */
+  background: black;
   opacity: 0.7;
   position: fixed;
 }
@@ -37,5 +61,48 @@ div.full-info {
   background: white;
   position: fixed;
   top: 10%;
-  left: 10%
+  left: 10%;
+  border: 1.5px solid rgb(59, 125, 239);
+  box-shadow: 0 3px rgba(59, 125, 239, 0.6);
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+  z-index: 20;
+  display: flex;
+}
+
+div.spot-info {
+  border: 1px solid yellow;
+}
+
+div.spot-info ul {
+  border: 1px solid red;
+}
+
+div.spot-info map {
+  border: 1px solid blue;
+}
+
+div.forecast-info {
+  border: 1px solid pink;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+div.Morning {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+div.Midday {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+div.Evening {
+  border: 1px solid black;
+  padding: 10px;
 }

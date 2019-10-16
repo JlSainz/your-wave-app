@@ -24,6 +24,14 @@ export default class Spots extends Component {
     });
   }
 
+  // hideOne(spot) {
+  //   this.setState({
+  //     ...this.state,
+  //     selectedSpot: spot,
+  //     showOneSpot: false
+  //   });
+  // }
+
   async getMeteo() {
     const forecast = await this.service.getForecast();
     // console.log(forecast);
@@ -78,36 +86,211 @@ export default class Spots extends Component {
           <div className="one-spot display">
             <div className="filter"></div>
             <div className="full-info">
-              <h1>Name: {this.state.selectedSpot.name}</h1>
-              <p>Country: {this.state.selectedSpot.country}</p>
-              <ul>
-                <li>Nearby: {this.state.selectedSpot.nearby}</li>
-                <li>Consistence: {this.state.selectedSpot.consistence}</li>
-                <li>Commment: {this.state.selectedSpot.comment.text}</li>
-                <li>Rating: {this.state.selectedSpot.comment.rating}</li>
-                <li>Wave form: {this.state.selectedSpot.wave_form}</li>
-                <li>
-                  Wave direction: {this.state.selectedSpot.wave_direction}
-                </li>
-                <li>Weather: {this.state.selectedSpot.weather}</li>
-                <li>Period: {this.state.selectedSpot.period}</li>
-                <li>Break type: {this.state.selectedSpot.break_type}</li>
-                <li>Level: {this.state.selectedSpot.level}</li>
-                <li>Vibe: {this.state.selectedSpot.vibe}</li>
-                <li>Lng: {this.state.selectedSpot.location.coordinates[0]}</li>
-                <li>Lat: {this.state.selectedSpot.location.coordinates[1]}</li>
-              </ul>
-              <ul>
-                {!!this.state.forecast.hours && (
+              <div className="spot-info">
+                <ul>
                   <li>
-                    Air: {this.state.forecast.hours[0].airTemperature[0].value}
+                    {this.state.selectedSpot.name}(
+                    {this.state.selectedSpot.country})
                   </li>
-                )}
-              </ul>
-              <Gmaps
-                coordinates={this.state.selectedSpot.location.coordinates}
-              />
-              <button onClick={() => this.getMeteo()}>Get Forecast!</button>
+                  <li>{this.state.selectedSpot.nearby} near</li>
+                  <li>Consistence: {this.state.selectedSpot.consistence}</li>
+                  <li>Commment: {this.state.selectedSpot.comment.text}</li>
+                  <li>Rating: {this.state.selectedSpot.comment.rating}</li>
+                  <li>Wave form: {this.state.selectedSpot.wave_form}</li>
+                  <li>{this.state.selectedSpot.wave_direction}</li>
+                  <li>{this.state.selectedSpot.weather} weather</li>
+                  <li>Period: {this.state.selectedSpot.period} s</li>
+                  <li>{this.state.selectedSpot.break_type}</li>
+                  <li>{this.state.selectedSpot.level} level</li>
+                  <li> {this.state.selectedSpot.vibe} vibe</li>
+                </ul>
+                <Gmaps
+                  className="map"
+                  coordinates={this.state.selectedSpot.location.coordinates}
+                />
+              </div>
+              <div className="forecast-info">
+                <div className="Morning">
+                  Morning 05-11h
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Air Temperature: 
+                        
+                        {this.state.forecast.hours[4].airTemperature[0].value} -
+                        {this.state.forecast.hours[12].airTemperature[0].value}
+                        ºC
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wave Direction:
+                        {this.state.forecast.hours[4].waveDirection[0].value} -
+                        {this.state.forecast.hours[12].waveDirection[0].value}º
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wave Height:
+                        {this.state.forecast.hours[4].waveHeight[0].value} -
+                        {this.state.forecast.hours[12].waveHeight[0].value} m
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wind Speed:
+                        {this.state.forecast.hours[4].windSpeed[0].value} -
+                        {this.state.forecast.hours[12].windSpeed[0].value} kph
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wind Direction:
+                        {this.state.forecast.hours[4].windDirection[0].value} -
+                        {this.state.forecast.hours[12].windDirection[0].value}º
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Period:
+                        {this.state.forecast.hours[4].wavePeriod[0].value} -
+                        {this.state.forecast.hours[12].wavePeriod[0].value} s
+                      </li>
+                    )}
+                  </ul>
+                </div>
+                <div className="Midday">
+                  Midday 11-17h
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Air Temperature:
+                        {
+                          this.state.forecast.hours[12].airTemperature[0].value
+                        }{" "}
+                        -{this.state.forecast.hours[18].airTemperature[0].value}
+                        ºC
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wave Direction:
+                        {this.state.forecast.hours[12].waveDirection[0].value} -
+                        {this.state.forecast.hours[18].waveDirection[0].value}º
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wave Height:
+                        {this.state.forecast.hours[12].waveHeight[0].value} -
+                        {this.state.forecast.hours[18].waveHeight[0].value} m
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wind Speed:
+                        {this.state.forecast.hours[12].windSpeed[0].value} -
+                        {this.state.forecast.hours[18].windSpeed[0].value} kph
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wind Direction:
+                        {this.state.forecast.hours[12].windDirection[0].value} -
+                        {this.state.forecast.hours[18].windDirection[0].value}º
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Period:
+                        {this.state.forecast.hours[12].wavePeriod[0].value} -
+                        {this.state.forecast.hours[18].wavePeriod[0].value} s
+                      </li>
+                    )}
+                  </ul>
+                </div>
+                <div className="Evening">
+                  Evening 17-23h
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Air Temperature:
+                        {
+                          this.state.forecast.hours[18].airTemperature[0].value
+                        }{" "}
+                        -{this.state.forecast.hours[24].airTemperature[0].value}
+                        ºC
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wave Direction:
+                        {this.state.forecast.hours[18].waveDirection[0].value} -
+                        {this.state.forecast.hours[24].waveDirection[0].value}º
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wave Height:
+                        {this.state.forecast.hours[18].waveHeight[0].value} -
+                        {this.state.forecast.hours[24].waveHeight[0].value} m
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wind Speed:
+                        {this.state.forecast.hours[18].windSpeed[0].value} -
+                        {this.state.forecast.hours[24].windSpeed[0].value} kph
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Wind Direction:
+                        {this.state.forecast.hours[18].windDirection[0].value} -
+                        {this.state.forecast.hours[24].windDirection[0].value}º
+                      </li>
+                    )}
+                  </ul>
+                  <ul>
+                    {!!this.state.forecast.hours && (
+                      <li>
+                        Period:
+                        {this.state.forecast.hours[18].wavePeriod[0].value} -
+                        {this.state.forecast.hours[24].wavePeriod[0].value} s
+                      </li>
+                    )}
+                  </ul>
+                </div>
+                <button onClick={() => this.getMeteo()}>Get Forecast!</button>
+              </div>
             </div>
           </div>
           {this.props.spots.map((spot, index) => (

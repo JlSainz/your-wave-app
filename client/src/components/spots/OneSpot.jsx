@@ -19,7 +19,7 @@ export default class OneSpot extends Component {
     return (
       <div className="spot">
         <img src={spot.imageURL} alt="spot pic" />
-        <p>Country: {spot.country}</p>
+        <h1>{spot.name}({spot.country})</h1>  
       </div>
     );
   }
