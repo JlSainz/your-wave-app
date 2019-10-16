@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+  /* html {
+    background: black;
+  } */
+
 .links {
   display: flex;
   align-items: center;
@@ -9,9 +13,9 @@
   margin-top: 70px;
 }
 
-.App {
-  background-clip: red;
-}
+/* .App {
+  
+} */
 
 .oculto {
   position: fixed;
@@ -41,4 +45,5 @@
 
 .oculto-create.mostrar-create {
   top: 0;
+  background: rgba(1, 1, 1, 0.7);
 }

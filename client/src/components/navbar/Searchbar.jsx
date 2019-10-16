@@ -7,10 +7,10 @@ export default class SearchBar extends Component {
       <div>
         <form className="search-form" id="test">
           <input
-            className="input"
+            className="search"
             type="search"
             name="search"
-            // onChange={e => this.props.search(e)}
+            onChange={e => this.props.search(e)}
           ></input>
         </form>
       </div>

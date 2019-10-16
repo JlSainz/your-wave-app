@@ -10,13 +10,19 @@ import Spots from "./components/spots/Spots";
 import Profile from "./components/Profile/Profile";
 import SpotCreation from "./components/SpotCreation";
 import SpotsService from "./components/services/SpotsService";
+import Searchbar from "./components/navbar/Searchbar";
 
 // import Gmaps from "./components/gmaps/Gmaps";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedInUser: null, spots: [] };
+    this.state = {
+      loggedInUser: null,
+      spots: [],
+      filtered: [],
+      searchString: ""
+    };
     this.service = new AuthService();
 
     this.fetchUser();
@@ -52,8 +58,35 @@ class App extends Component {
 
   componentDidMount() {
     this.spServices.allSpots().then(data => {
-      this.setState({ ...this.state, spots: data.spots });
+      this.setState({ ...this.state, spots: data.spots, filtered: data.spots });
     });
+  }
+
+  searchSpots() {
+    console.log("tpm");
+    let search = this.state.searchString;
+    let filteredSpots = this.state.spots.filter(item =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+    this.setState(
+      {
+        ...this.state,
+        filtered: filteredSpots
+      }
+      // () => this.searchSpots()
+    );
+    console.log(filteredSpots);
+  }
+
+  checkSearch(e) {
+    this.setState(
+      {
+        ...this.state,
+        searchString: e.target.value
+      },
+      () => this.searchSpots()
+    );
+    console.log(e.target.value);
   }
 
   render() {
@@ -65,6 +98,7 @@ class App extends Component {
             className="App-header"
             loggedInUser={this.state.loggedInUser}
             logout={this.logout}
+            search={e => this.checkSearch(e)}
           />
           <Switch>
             <Route
@@ -72,7 +106,7 @@ class App extends Component {
               path="/"
               render={() => (
                 <div className="App">
-                  <Spots spots={this.state.spots} />
+                  <Spots spots={this.state.filtered} />
                   <Route exact path="/profile" render={() => <Profile />} />
                 </div>
               )}
@@ -109,12 +143,13 @@ class App extends Component {
             <Navbar
               userInSession={this.state.loggedInUser}
               logout={this.logout}
+              search={e => this.checkSearch(e)}
             />
             <Switch>
               <Route
                 exact
                 path="/signup"
-                render={() => <Signup  getUser={this.getUser} />}
+                render={() => <Signup getUser={this.getUser} />}
               />
               <Route
                 exact
@@ -122,7 +157,7 @@ class App extends Component {
                 render={() => <Login getUser={this.getUser} />}
               />
             </Switch>
-            <Spots spots={this.state.spots} />
+            <Spots spots={this.state.filtered} />
           </div>
         </React.Fragment>
       );

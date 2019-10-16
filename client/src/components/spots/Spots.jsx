@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Spots.css";
+import "./Spots.scss";
 import Gmaps from "./../gmaps/Gmaps";
 import OneSpot from "./OneSpot";
 import SpotsService from "./../services/SpotsService";
@@ -20,7 +20,14 @@ export default class Spots extends Component {
     this.setState({
       ...this.state,
       selectedSpot: spot,
-      showOneSpot: true
+      showOneSpot: true,
+    });
+  }
+
+  displayAll(){
+     this.setState({
+      ...this.state,
+      showOneSpot: false,
     });
   }
 
@@ -69,7 +76,7 @@ export default class Spots extends Component {
             <div className="full-info"></div>
           </div>
           {this.props.spots.map((spot, index) => (
-            <div onClick={() => this.displayOne(spot)}>
+            <div className="item" onClick={() => this.displayOne(spot)}>
               <OneSpot
                 full={false}
                 selectedSpot={this.state.selectedSpot}
@@ -84,7 +91,7 @@ export default class Spots extends Component {
       return (
         <div className="container-spot">
           <div className="one-spot display">
-            <div className="filter"></div>
+            <div className="filter" onClick={()=> this.displayAll()}></div>
             <div className="full-info">
               <div className="spot-info">
                 <ul>
@@ -115,8 +122,7 @@ export default class Spots extends Component {
                   <ul>
                     {!!this.state.forecast.hours && (
                       <li>
-                        Air Temperature: 
-                        
+                        Air Temperature:
                         {this.state.forecast.hours[4].airTemperature[0].value} -
                         {this.state.forecast.hours[12].airTemperature[0].value}
                         ºC

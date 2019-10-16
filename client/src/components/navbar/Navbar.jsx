@@ -22,7 +22,8 @@ class Navbar extends Component {
           <div className="img">
             <img src="./images/logo.png" alt="logo" />
           </div>
-          <SearchBar className="search-bar" />
+          <SearchBar search={this.props.search} />
+
           <div className="container-navbar-logged">
             <Link to="/">HOME</Link> |
             <Link onClick={this.handleLogout}>LOG OUT</Link> |
@@ -42,7 +43,8 @@ class Navbar extends Component {
       return (
         <nav className="nav-bar">
           <img src="./images/logo.png" alt="logo" />
-          <SearchBar className="search-bar" />
+          <SearchBar search={this.props.search} />
+
           <div className="container-navbar">
             <Link to="/">HOME</Link> |<Link to="/signup">SIGN UP</Link>|
             <Link to="/login">LOG IN</Link>

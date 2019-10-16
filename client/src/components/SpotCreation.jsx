@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Create from "./create/Create";
 import Spots from "./spots/Spots";
 import SpotsService from "./services/SpotsService";
-
+import SearchBar from "./navbar/Searchbar";
 export default class SpotCreation extends Component {
   constructor() {
     super();
@@ -106,6 +106,8 @@ export default class SpotCreation extends Component {
             )
           }
         />
+        <SearchBar className="search-bar" />
+
         <Spots spots={this.state.spots} />
       </div>
     );
