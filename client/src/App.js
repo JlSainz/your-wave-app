@@ -114,7 +114,7 @@ class App extends Component {
               <Route
                 exact
                 path="/signup"
-                render={() => <Signup getUser={this.getUser} />}
+                render={() => <Signup  getUser={this.getUser} />}
               />
               <Route
                 exact
@@ -122,7 +122,6 @@ class App extends Component {
                 render={() => <Login getUser={this.getUser} />}
               />
             </Switch>
-
             <Spots spots={this.state.spots} />
           </div>
         </React.Fragment>

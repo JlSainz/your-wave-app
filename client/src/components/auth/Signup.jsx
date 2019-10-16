@@ -5,7 +5,13 @@ import "./Signup.css";
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", lastname: "", email: "", password: "" };
+    this.state = {
+      username: "",
+      lastname: "",
+      email: "",
+      password: "",
+      oculto: true
+    };
     this.service = new AuthService();
   }
 
@@ -37,67 +43,135 @@ class Signup extends Component {
       });
   };
 
+  componentDidMount() {
+    let _this = this;
+    setTimeout(function() {
+      _this.setState({
+        ...this.state,
+        oculto: false
+      });
+    }, 10);
+  }
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
   render() {
-    return (
-      <div className="signup">
-        <form onSubmit={this.handleFormSubmit}>
-          <h3>Create your account!</h3>
-          <fieldset>
-            <label className="label">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={e => this.handleChange(e)}
-              placeholder="Name..."
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label className="label">Lastname</label>
-            <input
-              type="text"
-              name="lastname"
-              value={this.state.lastname}
-              onChange={e => this.handleChange(e)}
-              placeholder="Last name..."
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label className="label">Email</label>
-            <input
-              type="text"
-              name="email"
-              value={this.state.email}
-              onChange={e => this.handleChange(e)}
-              placeholder="Email..."
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label className="label">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={e => this.handleChange(e)}
-              placeholder="Password..."
-              required
-            />
-          </fieldset>
-          <div className="fatherbtn">
-            <input className="button" type="submit" value="Sign up" />
-          </div>
-        </form>
-        <h1>{this.state.error ? "Error" : ""}</h1>
-      </div>
-    );
+    if (this.state.oculto === true) {
+      return (
+        <div className="signup oculto">
+          <form onSubmit={this.handleFormSubmit}>
+            <h3>Create your account!</h3>
+            <fieldset>
+              <label className="label">Username</label>
+              <input
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={e => this.handleChange(e)}
+                placeholder="Name..."
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label className="label">Lastname</label>
+              <input
+                type="text"
+                name="lastname"
+                value={this.state.lastname}
+                onChange={e => this.handleChange(e)}
+                placeholder="Last name..."
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label className="label">Email</label>
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={e => this.handleChange(e)}
+                placeholder="Email..."
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label className="label">Password</label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={e => this.handleChange(e)}
+                placeholder="Password..."
+                required
+              />
+            </fieldset>
+            <div className="fatherbtn">
+              <input className="button" type="submit" value="Sign up" />
+            </div>
+          </form>
+          <h1>{this.state.error ? "Error" : ""}</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div className="signup oculto mostrar">
+          <form onSubmit={this.handleFormSubmit}>
+            <h3>Create your account!</h3>
+            <fieldset>
+              <label className="label">Username</label>
+              <input
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={e => this.handleChange(e)}
+                placeholder="Name..."
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label className="label">Lastname</label>
+              <input
+                type="text"
+                name="lastname"
+                value={this.state.lastname}
+                onChange={e => this.handleChange(e)}
+                placeholder="Last name..."
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label className="label">Email</label>
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={e => this.handleChange(e)}
+                placeholder="Email..."
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label className="label">Password</label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={e => this.handleChange(e)}
+                placeholder="Password..."
+                required
+              />
+            </fieldset>
+            <div className="fatherbtn">
+              <input className="button" type="submit" value="Sign up" />
+            </div>
+          </form>
+          <h1>{this.state.error ? "Error" : ""}</h1>
+        </div>
+      );
+    }
   }
 }
 

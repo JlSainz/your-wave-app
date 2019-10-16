@@ -16,17 +16,16 @@
   transition: 0.3s all ease;
 }
 
-.spot:hover{
+.spot:hover {
   border: 1px solid black;
   color: red;
-  width:101%;
-  height:101%;
+  width: 101%;
+  height: 101%;
 }
 
-
-
-.spot img{
+.spot img {
   width: 100%;
+  /* min-height: 101%; */
 }
 
 div.one-spot {

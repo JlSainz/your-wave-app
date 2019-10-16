@@ -12,3 +12,33 @@
 .App {
   background-clip: red;
 }
+
+.oculto {
+  position: fixed;
+  left: -100%;
+  transition: 0.6s all ease;
+}
+
+.oculto.mostrar {
+  left: 0;
+}
+
+.oculto-login {
+  position: fixed;
+  right: -100%;
+  transition: 0.6s all ease;
+}
+
+.oculto-login.mostrar-login {
+  right: 0;
+}
+
+.oculto-create {
+  position: fixed;
+  top: -100%;
+  transition: 0.6s all ease;
+}
+
+.oculto-create.mostrar-create {
+  top: 0;
+}

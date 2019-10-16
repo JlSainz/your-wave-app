@@ -6,7 +6,7 @@ import "./Login.css";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "", oculto: true };
     this.service = new AuthService();
   }
 
@@ -34,6 +34,15 @@ class Login extends Component {
         });
       });
   };
+  componentDidMount() {
+    let _this = this;
+    setTimeout(function() {
+      _this.setState({
+        ...this.state,
+        oculto: false
+      });
+    }, 10);
+  }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -41,41 +50,77 @@ class Login extends Component {
   };
 
   render() {
-    return (
-      <div className="container-login">
-        <form onSubmit={this.handleFormSubmit}>
-          <h3>Sign in!</h3>
-          <fieldset>
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={e => this.handleChange(e)}
-              placeholder="email..."
-              required
-            />
-          </fieldset>
+    if (this.state.oculto === true) {
+      return (
+        <div className="container-login oculto-login">
+          <form onSubmit={this.handleFormSubmit}>
+            <h3>Sign in!</h3>
+            <fieldset>
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={e => this.handleChange(e)}
+                placeholder="email..."
+                required
+              />
+            </fieldset>
 
-          <fieldset>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={e => this.handleChange(e)}
-              placeholder="Password"
-              required
-            />
-          </fieldset>
-          <div className="fatherbtn">
-            <input className="button" type="submit" value="Log in" />
-          </div>
-          
-        </form>
-        <h1>{this.state.error ? "Error" : ""}</h1>
-      </div>
-    );
+            <fieldset>
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={e => this.handleChange(e)}
+                placeholder="Password"
+                required
+              />
+            </fieldset>
+            <div className="fatherbtn">
+              <input className="button" type="submit" value="Log in" />
+            </div>
+          </form>
+          <h1>{this.state.error ? "Error" : ""}</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div className="container-login oculto-login mostrar-login ">
+          <form onSubmit={this.handleFormSubmit}>
+            <h3>Sign in!</h3>
+            <fieldset>
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={e => this.handleChange(e)}
+                placeholder="email..."
+                required
+              />
+            </fieldset>
+
+            <fieldset>
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={e => this.handleChange(e)}
+                placeholder="Password"
+                required
+              />
+            </fieldset>
+            <div className="fatherbtn">
+              <input className="button" type="submit" value="Log in" />
+            </div>
+          </form>
+          <h1>{this.state.error ? "Error" : ""}</h1>
+        </div>
+      );
+    }
   }
 }
 
