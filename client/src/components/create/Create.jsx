@@ -509,12 +509,20 @@ export default class Create extends Component {
                        <div className="container oculto-create mostrar-create">
                          <form
                            onSubmit={event =>
-                             this.handleFormSubmit(event, "image")
-                           }
-                         >
+                            this.handleFormSubmit(event, "image")
+                          }
+                          >
+                                 <div className="backImg">
+                                 {this.state.imageURL && (
+                                   <img src={this.state.imageURL} />
+                                 )}
+                                 </div>
                            <div className="icons">
                              <fieldset>
-                               <label>Name</label>
+                               <label>
+                                 Name
+                                 <i class="medium material-icons">thumb_up</i>
+                               </label>
                                <input
                                  type="text"
                                  name="name"
@@ -845,34 +853,32 @@ export default class Create extends Component {
                                  </option>
                                </select>
                              </label>
-                           </div>
-                           <div className="cont-map">
+                             {/* <label>Upload photo</label> */}
+                             <input
+                               type="button"
+                               value="Upload photo"
+                               onClick={() => this.upload()}
+                             />
                              <input
                                className="submit-button"
                                type="button"
                                value="Create spot!"
                                onClick={e => this.handleFormSubmit(e)}
                              />
+                             <input
+                               type="file"
+                               name="photo"
+                               onChange={e => this.onPhotoChange(e)}
+                             />
+                           </div>
+                           <div className="cont-map">
                              <GmapsLocate
                                className="map"
                                coordinates={this.state.coordinates}
                                getLocation={this.getLocation}
                              />
                              <div className="cloudinary">
-                               <label>Upload photo</label>
-                               {this.state.imageURL && (
-                                 <img src={this.state.imageURL} />
-                               )}
-                               <input
-                                 type="file"
-                                 name="photo"
-                                 onChange={e => this.onPhotoChange(e)}
-                               />
-                               <input
-                                 type="button"
-                                 value="Upload photo"
-                                 onClick={() => this.upload()}
-                               />
+                
                              </div>
                            </div>
                          </form>
