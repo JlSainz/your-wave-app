@@ -2,6 +2,12 @@
   margin-top: 25px;
 }
 
+select {
+  background: green;
+  opacity: 0;
+  transition: 0.3s all ease;
+}
+
 .container {
   display: flex;
   justify-content: space-evenly;

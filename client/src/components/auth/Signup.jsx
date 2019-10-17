@@ -23,16 +23,18 @@ class Signup extends Component {
     const password = this.state.password;
     this.service
       .signup(username, lastname, email, password)
-      .then(response => {
+      .then(user => {
+        console.log(user);
         this.setState({
           username: "",
           lastname: "",
           email: "",
           password: ""
         });
-        this.props.getUser(response.user);
+        this.props.getUser(user.savedUser);
       })
       .catch(error => {
+        console.log(error);
         this.setState({
           username: username,
           lastname: lastname,

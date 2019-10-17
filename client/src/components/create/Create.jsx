@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-// import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "./Create.css";
 import SpotsService from "./../services/SpotsService";
 import GmapsLocate from "./../gmaps/GmapsLocate";
 
-export default class Create extends Component {
+class Create extends Component {
                  constructor() {
                    super();
 
@@ -79,7 +79,11 @@ export default class Create extends Component {
                      desired_height,
                      vibe,
                      consistence,
-                     imageURL
+                     imageURL,
+                     () => {
+                     this.props.getAllSpotsFn(() => {
+                       this.props.history.push("/");
+                     })}
                    );
 
                    this.setState({
@@ -151,7 +155,7 @@ export default class Create extends Component {
                              this.handleFormSubmit(event, "image")
                            }
                          >
-                           <div className="backImg">
+                           <div className="backImg" >
                              {this.state.imageURL && (
                                <img src={this.state.imageURL} />
                              )}
@@ -523,7 +527,10 @@ export default class Create extends Component {
                      );
                    } else {
                      return (
-                       <div className="container oculto-create mostrar-create">
+                       <div
+                         className="container oculto-create mostrar-create"
+                        //  onClick={() => this.props.history.push("/")}
+                       >
                          <form
                            onSubmit={event =>
                              this.handleFormSubmit(event, "image")
@@ -901,3 +908,6 @@ export default class Create extends Component {
                    }
                  }
                }
+
+
+               export default withRouter(Create);

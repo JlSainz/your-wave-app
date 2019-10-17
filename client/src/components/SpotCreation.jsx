@@ -34,7 +34,8 @@ export default class SpotCreation extends Component {
     desired_height,
     vibe,
     consistence,
-    imageURL
+    imageURL,
+    cb
   ) {
     this.spServices
       .createSpots(
@@ -57,10 +58,15 @@ export default class SpotCreation extends Component {
       )
 
       .then(response => {
-        this.setState({
-          ...this.state,
-          spots: response.allSpots
-        });
+        this.setState(
+          {
+            ...this.state,
+            spots: response.allSpots
+          },
+          () => {
+            if (cb) cb();
+          }
+        );
       });
   }
 
@@ -68,6 +74,7 @@ export default class SpotCreation extends Component {
     return (
       <div>
         <Create
+          getAllSpotsFn={this.props.getAllSpotsFn}
           createSpots={(
             name,
             location,
@@ -84,7 +91,8 @@ export default class SpotCreation extends Component {
             desired_height,
             vibe,
             consistence,
-            imageURL
+            imageURL,
+            cb
           ) =>
             this.createNewSpot(
               name,
@@ -102,7 +110,8 @@ export default class SpotCreation extends Component {
               desired_height,
               vibe,
               consistence,
-              imageURL
+              imageURL,
+              cb
             )
           }
         />

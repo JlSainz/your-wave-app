@@ -4,6 +4,7 @@ import Gmaps from "./../gmaps/Gmaps";
 import OneSpot from "./OneSpot";
 import SpotsService from "./../services/SpotsService";
 import { directive } from "@babel/types";
+import Preload from "../Preload/Preload";
 
 export default class Spots extends Component {
                  constructor(props) {
@@ -12,17 +13,30 @@ export default class Spots extends Component {
                      spots: [],
                      selectedSpot: [],
                      showOneSpot: false,
-                     forecast: {}
+                     forecast: {},
+                     preload:false
                    };
                    this.service = new SpotsService();
+                   this.preload()
                  }
+
+                    // componentDidMount(){
+
+                    //   }
+
 
                  displayOne(spot) {
                    this.setState({
                      ...this.state,
                      selectedSpot: spot,
                      showOneSpot: true
-                   });
+                   },()=>this.getForecast(this.state.selectedSpot));
+                 }
+
+                 preload(){
+                   setTimeout(()=>{
+                     this.setState({...this.state, preload: true})
+                   },4000)
                  }
 
                  hideOne(spot) {
@@ -60,21 +74,14 @@ export default class Spots extends Component {
                 
 
                  getForecast(spot) {
-                   this.setState({
-                     ...this.state,
-                     spots: spot
-                   });
-                   console.dir(this.state + "HIJODEPUTA");
+                   console.dir(this.state.selectedSpot);
                    console.log(Object.values(this.state.spots));
                    console.log("GETTING FORECAST...");
 
-                   const lng = this.state.spot.location.coordinates[0];
-                   const lat = this.state.spot.location.coordinates[1];
-                   // const lng = -1.0012570000000096;
-                   // const lat = -44.069914;
-
+                   const lng = spot.location.coordinates[0];
+                   const lat = spot.location.coordinates[1];
                    fetch(
-                     `https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`,
+                    //  `https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`,
                      {
                        headers: {
                          Authorization: `${process.env.REACT_APP_API_KEY}`
@@ -87,25 +94,12 @@ export default class Spots extends Component {
                          ...this.state,
                          forecast: forecast
                        });
-                       console.log(
-                         this.state.forecast.hours[0].airTemperature[0].value +
-                           "este es hjdp"
-                       );
-                       console.log(forecast.hours[0].airTemperature[0].value);
+                      
                      });
-                   const forecast = this.state.forecast;
-                   console.log(forecast + "cabron");
                  }
 
                  render() {
-                   // console.log(
-                   //   this.state.jsonData.hours[4].waterTemperature[0].value +
-                   //     "pinta ya caaaaabron hijodeputa"
-                   // );
                    if (this.state.forecast.hours) {
-                     console.log(
-                       this.state.forecast.hours[0].airTemperature[0].value
-                     );
                    }
                    if (this.state.showOneSpot === false) {
                      return (
@@ -114,20 +108,22 @@ export default class Spots extends Component {
                            <div className="filter"></div>
                            <div className="full-info"></div>
                          </div>
-                         {this.props.spots.map((spot, index) => (
-                           <div
-                             className="item"
-                             onClick={() => this.displayOne(spot)}
-                           >
-                             <OneSpot
-                               full={false}
-                               selectedSpot={this.state.selectedSpot}
-                               key={index}
-                               spot={spot}
-                               display={e => this.getForecast(e)}
-                             />
-                           </div>
-                         ))}
+                         <div  className="masonry-effect">
+                           {this.props.spots.map((spot, index) => (
+                             <div
+                               className="item"
+                               onClick={() => this.displayOne(spot)}
+                             >
+                               <OneSpot
+                                 full={false}
+                                 selectedSpot={this.state.selectedSpot}
+                                 key={index}
+                                 spot={spot}
+                                 display={() => this.getForecast(spot)}
+                               />
+                             </div>
+                           ))}
+                         </div>
                        </div>
                      );
                    } else {
@@ -146,8 +142,8 @@ export default class Spots extends Component {
                              <div className="spot-info">
                                <ul>
                                  <li>
-                                   {this.state.selectedSpot.name}(
-                                   ({this.state.selectedSpot.country})
+                                   {this.state.selectedSpot.name}( (
+                                   {this.state.selectedSpot.country})
                                  </li>
                                  <li>{this.state.selectedSpot.nearby} near</li>
                                  <li>
@@ -188,80 +184,88 @@ export default class Spots extends Component {
                              </div>
                              <div className="forecast-info">
                                <div className="Morning">
-                                 <div className="upRow">
-                                   <ul>
-                                     {!!this.state.forecast.hours && (
-                                       <li>
-                                         <i class="material-icons">
-                                           brightness_7
-                                         </i>
-                                         {this.state.forecast.hours[4].airTemperature[0].value.toFixed()}{" "}
-                                         -
-                                         {this.state.forecast.hours[12].airTemperature[0].value.toFixed()}
-                                         ºC
-                                       </li>
-                                     )}
-                                   </ul>
-                                   <p>Morning 05-11h</p>
-                                   <ul>
-                                     {!!this.state.forecast.hours && (
-                                       <li>
-                                         <i class="material-icons">opacity</i>
-                                         {this.state.forecast.hours[4].waterTemperature[0].value.toFixed()}{" "}
-                                         -
-                                         {this.state.forecast.hours[12].waterTemperature[0].value.toFixed()}
-                                         ºC
-                                       </li>
-                                     )}
-                                   </ul>
-                                 </div>
-                                 <div className="midRow">
-                                   <ul>
-                                     {!!this.state.forecast.hours && (
-                                       <li>
-                                         <i class="fas fa-water"></i>
-                                         {this.state.forecast.hours[4].waveHeight[0].value.toFixed(
-                                           1
-                                         )}{" "}
-                                         -
-                                         {this.state.forecast.hours[12].waveHeight[0].value.toFixed(
-                                           1
-                                         )}{" "}
-                                         m
-                                       </li>
-                                     )}
-                                   </ul>
-                                 </div>
-                                 <div className="downRow">
-                                   <ul>
-                                     {!!this.state.forecast.hours && (
-                                       <li>
-                                         <i class="material-icons">
-                                           {" "}
-                                           autorenew
-                                         </i>
-                                         {this.state.forecast.hours[4].wavePeriod[0].value.toFixed()}{" "}
-                                         -
-                                         {this.state.forecast.hours[12].wavePeriod[0].value.toFixed()}{" "}
-                                         s
-                                       </li>
-                                     )}
-                                   </ul>
-                                   <ul>
-                                     {!!this.state.forecast.hours && (
-                                       <li>
-                                         <i class="material-icons">
-                                           {" "}
-                                           arrow_upward
-                                         </i>
-                                         {this.state.forecast.hours[4].windSpeed[0].value.toFixed()}{" "}
-                                         -
-                                         {this.state.forecast.hours[12].windSpeed[0].value.toFixed()}{" "}
-                                         kph
-                                       </li>
-                                     )}
-                                   </ul>
-                                 </div>
+                                 {this.state.preload ? (
+                                   <React.Fragment>
+                                     <div className="upRow">
+                                       <ul>
+                                         {!!this.state.forecast.hours && (
+                                           <li>
+                                             <i class="material-icons">
+                                               brightness_7
+                                             </i>
+                                             {this.state.forecast.hours[4].airTemperature[0].value.toFixed()}{" "}
+                                             -
+                                             {this.state.forecast.hours[12].airTemperature[0].value.toFixed()}
+                                             ºC
+                                           </li>
+                                         )}
+                                       </ul>
+                                       <p>Morning 05-11h</p>
+                                       <ul>
+                                         {!!this.state.forecast.hours && (
+                                           <li>
+                                             <i class="material-icons">
+                                               opacity
+                                             </i>
+                                             {this.state.forecast.hours[4].waterTemperature[0].value.toFixed()}{" "}
+                                             -
+                                             {this.state.forecast.hours[12].waterTemperature[0].value.toFixed()}
+                                             ºC
+                                           </li>
+                                         )}
+                                       </ul>
+                                     </div>
+                                     <div className="midRow">
+                                       <ul>
+                                         {!!this.state.forecast.hours && (
+                                           <li>
+                                             <i class="fas fa-water"></i>
+                                             {this.state.forecast.hours[4].waveHeight[0].value.toFixed(
+                                               1
+                                             )}{" "}
+                                             -
+                                             {this.state.forecast.hours[12].waveHeight[0].value.toFixed(
+                                               1
+                                             )}{" "}
+                                             m
+                                           </li>
+                                         )}
+                                       </ul>
+                                     </div>
+                                     <div className="downRow">
+                                       <ul>
+                                         {!!this.state.forecast.hours && (
+                                           <li>
+                                             <i class="material-icons">
+                                               {" "}
+                                               autorenew
+                                             </i>
+                                             {this.state.forecast.hours[4].wavePeriod[0].value.toFixed()}{" "}
+                                             -
+                                             {this.state.forecast.hours[12].wavePeriod[0].value.toFixed()}{" "}
+                                             s
+                                           </li>
+                                         )}
+                                       </ul>
+                                       <ul>
+                                         {!!this.state.forecast.hours && (
+                                           <li>
+                                             <i class="material-icons">
+                                               {" "}
+                                               arrow_upward
+                                             </i>
+                                             {this.state.forecast.hours[4].windSpeed[0].value.toFixed()}{" "}
+                                             -
+                                             {this.state.forecast.hours[12].windSpeed[0].value.toFixed()}{" "}
+                                             kph
+                                           </li>
+                                         )}
+                                       </ul>
+                                     </div>
+                                   </React.Fragment>
+                                 ) : (
+                                <Preload/>
+                                 )}
                                </div>
                                <div className="Midday">
                                  <div className="upRow">

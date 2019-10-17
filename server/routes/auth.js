@@ -17,7 +17,6 @@ const login = (req, user) => {
 };
 
 router.post("/signup", (req, res, next) => {
-  
   const { username, lastname, password, email } = req.body;
   if (!username || !lastname || !email || !password) {
     next(new Error("You must provide valid credentials"));
@@ -29,20 +28,23 @@ router.post("/signup", (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
 
-    return new User({
-      username,
-      lastname,
-      email,
-      password: hashPass
-    })
-      .save()
-      .then(savedUser => {
-        login(req, savedUser);
+    return (
+      new User({
+        username,
+        lastname,
+        email,
+        password: hashPass
       })
-      .catch(err => {})
+        .save()
+        .then(savedUser => {
+          login(req, savedUser);
+          res.json({ status: "signup & login successfully", savedUser });
+        })
+        .catch(err => {})
 
-      .then(user => res.json({ status: "signup & login successfully", user }))
-      .catch(e => next(e));
+        // .then(user => res.json({ status: "signup & login successfully", user }))
+        .catch(e => next(e))
+    );
   });
 });
 

@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
@@ -30,9 +30,12 @@ class App extends Component {
   }
 
   getUser = userObj => {
-    this.setState({
-      loggedInUser: userObj
-    });
+    this.setState(
+      {
+        loggedInUser: userObj
+      },
+      () => this.props.history.push("/")
+    );
   };
 
   logout = () => {
@@ -57,8 +60,21 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getAllSpots();
+  }
+
+  getAllSpots(cb) {
     this.spServices.allSpots().then(data => {
-      this.setState({ ...this.state, spots: data.spots, filtered: data.spots });
+      this.setState(
+        {
+          ...this.state,
+          spots: data.spots,
+          filtered: data.spots
+        },
+        () => {
+          if (cb) cb();
+        }
+      );
     });
   }
 
@@ -67,12 +83,10 @@ class App extends Component {
     let filteredSpots = this.state.spots.filter(item =>
       item.name.toLowerCase().includes(search.toLowerCase())
     );
-    this.setState(
-      {
-        ...this.state,
-        filtered: filteredSpots
-      }
-    );
+    this.setState({
+      ...this.state,
+      filtered: filteredSpots
+    });
   }
 
   checkSearch(e) {
@@ -89,7 +103,7 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <React.Fragment>
-          <Redirect to="/" />
+          {/* <Redirect to="/" /> */}
           <Navbar
             className="App-header"
             loggedInUser={this.state.loggedInUser}
@@ -113,7 +127,7 @@ class App extends Component {
               render={() => {
                 return (
                   <React.Fragment>
-                    <SpotCreation />
+                    <SpotCreation getAllSpotsFn={cb => this.getAllSpots(cb)} />
                   </React.Fragment>
                 );
               }}
@@ -161,4 +175,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
