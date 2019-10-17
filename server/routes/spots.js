@@ -16,7 +16,6 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/create/photo", uploadCloud.single("photo"), (req, res, next) => {
-  console.log(req.file)
   res.json(req.file.url);
 });
 

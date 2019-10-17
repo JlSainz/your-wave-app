@@ -75,14 +75,10 @@ export default class Spots extends Component {
   // }
 
   getForecast(spot) {
-    console.dir(this.state.selectedSpot);
-    console.log(Object.values(this.state.spots));
-    console.log("GETTING FORECAST...");
-
     const lng = spot.location.coordinates[0];
     const lat = spot.location.coordinates[1];
     fetch(
-      //  `https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`,
+       `https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`,
       {
         headers: {
           Authorization: `${process.env.REACT_APP_API_KEY}`

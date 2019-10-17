@@ -28,7 +28,7 @@ const debug = require("debug")(
 
 const app = express();
 
-var whitelist = ["http://localhost:3000"];
+var whitelist = ["http://localhost:3000", "https://your-wave.herokuapp.com/"];
 var corsOptions = {
   origin: function(origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -70,8 +70,8 @@ app.locals.title = "Server";
 const indexRouter = require("./routes/index");
 app.use("/", indexRouter);
 
-  // app.use((req, res) => {
-  //   res.sendFile(__dirname + "/public/index.html");
-  // });
+app.use((req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 module.exports = app;
