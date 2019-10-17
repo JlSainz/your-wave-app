@@ -17,11 +17,7 @@ export default class OneSpot extends Component {
   render() {
     const { spot } = this.state;
     return (
-      <div className="spot">
-        {/* <div
-          className="backImage"
-          style={{ backgroundImage: new URL(spot.imageURL) }}
-        ></div> */}
+      <div className="spot" onClick={e => this.props.display(e)}>
         <img src={spot.imageURL} alt="spot pic" />
         <h1>
           {spot.name}({spot.country})

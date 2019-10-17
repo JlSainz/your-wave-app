@@ -63,7 +63,6 @@ class App extends Component {
   }
 
   searchSpots() {
-    console.log("tpm");
     let search = this.state.searchString;
     let filteredSpots = this.state.spots.filter(item =>
       item.name.toLowerCase().includes(search.toLowerCase())
@@ -73,9 +72,7 @@ class App extends Component {
         ...this.state,
         filtered: filteredSpots
       }
-      // () => this.searchSpots()
     );
-    console.log(filteredSpots);
   }
 
   checkSearch(e) {
@@ -86,7 +83,6 @@ class App extends Component {
       },
       () => this.searchSpots()
     );
-    console.log(e.target.value);
   }
 
   render() {

@@ -1,16 +1,32 @@
 .search-form {
   /* width: auto; */
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  /* height: 40px; */
 }
 
+.search-form input {
+  /* height: 20px; */
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+/* .search-form i {
+  width: 2px;
+} */
+
 .search-form .search {
-  width: 200px;
-  height: 80px;
+  width: 500px;
+  height: 30px;
   transition: 0.3s all ease;
   outline: 0;
 }
 
 .search:focus, .search:hover {
   /* transform: scale(1.2); */
-  width: 400px;
-  height: 110px;
+  width: 800px;
+  /* height: 35px; */
 }

@@ -117,6 +117,12 @@ export default class Create extends Component {
                     },10);
                   }
                 
+                  out(){
+                    this.setState({
+                      ...this.state,
+                      oculto: false
+                    });
+                  }
 
                  onPhotoChange(image) {
                    const filename = image.target.value;

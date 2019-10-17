@@ -10,8 +10,10 @@ export default class SearchBar extends Component {
             className="search"
             type="search"
             name="search"
+            placeholder="Search spot..."
             onChange={e => this.props.search(e)}
           ></input>
+          <i class="material-icons">search</i>
         </form>
       </div>
     );

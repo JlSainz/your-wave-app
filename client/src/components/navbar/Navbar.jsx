@@ -19,16 +19,14 @@ class Navbar extends Component {
     if (this.props.loggedInUser) {
       return (
         <nav className="nav-bar">
-          <div className="img">
-            <img src="./images/logo.png" alt="logo" />
-          </div>
-          <SearchBar search={this.props.search} />
-
+          {/* <div className="img"> */}
+          <img src="./images/logo.png" alt="logo" />
+          {/* </div> */}
+          <SearchBar className="search-bar" search={this.props.search} />
           <div className="container-navbar-logged">
             <Link to="/">HOME</Link> |
             <Link onClick={this.handleLogout}>LOG OUT</Link> |
             <Link to="/create">NEW SPOT</Link> |
-            {/* <img className="usuario" src="./images/usuario.svg" alt="logo" /> */}
             <Link to="/profile">
               <p>
                 {this.props.loggedInUser
@@ -43,8 +41,7 @@ class Navbar extends Component {
       return (
         <nav className="nav-bar">
           <img src="./images/logo.png" alt="logo" />
-          <SearchBar search={this.props.search} />
-
+          <SearchBar lassName="search-bar" search={this.props.search} />
           <div className="container-navbar">
             <Link to="/">HOME</Link> |<Link to="/signup">SIGN UP</Link>|
             <Link to="/login">LOG IN</Link>
