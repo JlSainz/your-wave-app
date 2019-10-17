@@ -113,16 +113,18 @@ div.full-info {
   align-items: center;
 }
 
-.filter .material-icons {
+.filter .material-icons.back-spot {
   color: white;
-  margin-left: 70px;
+  margin-left: 60px;
   margin-top: 80px;
   transition: 0.3s all ease;
+  font-size: 60px;
 }
 
-.filter .material-icons:hover {
-  margin-left: 62px;
+.filter .material-icons.back-spot:hover {
+  margin-left: 50px;
   cursor: pointer;
+  font-size: 80px;
 }
 
 div.spot-info {

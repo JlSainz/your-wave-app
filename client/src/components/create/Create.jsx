@@ -150,22 +150,42 @@ class Create extends Component {
                    if (this.state.oculto === true) {
                      return (
                        <div className="container oculto-create">
+                         <i
+                           className="material-icons back"
+                           onClick={() => this.props.history.push("/")}
+                         >
+                           arrow_back
+                         </i>
+                         <div className="cont-map">
+                           <GmapsLocate
+                             className="map"
+                             coordinates={this.state.coordinates}
+                             getLocation={this.getLocation}
+                           />
+                         </div>
+                         <div className="cloudinary">
+                           {this.state.imageURL && (
+                             <img src={this.state.imageURL} />
+                           )}
+                           <input
+                             type="button"
+                             value="Upload photo"
+                             onClick={() => this.upload()}
+                           />
+                           <input
+                             type="file"
+                             name="photo"
+                             onChange={e => this.onPhotoChange(e)}
+                           />
+                         </div>
                          <form
                            onSubmit={event =>
                              this.handleFormSubmit(event, "image")
                            }
                          >
-                           <div className="backImg" >
-                             {this.state.imageURL && (
-                               <img src={this.state.imageURL} />
-                             )}
-                           </div>
                            <div className="icons">
                              <fieldset>
-                               <label>
-                                 Name
-                                 <i class="medium material-icons">thumb_up</i>
-                               </label>
+                               <label>Spot name</label>
                                <input
                                  type="text"
                                  name="name"
@@ -176,18 +196,7 @@ class Create extends Component {
                                />
                              </fieldset>
                              <fieldset>
-                               <label>T</label>
-                               <input
-                                 type="text"
-                                 name="text"
-                                 value={this.state.text}
-                                 onChange={event => this.handleChange(event)}
-                                 placeholder="Comment"
-                                 required
-                               />
-                             </fieldset>
-                             <fieldset>
-                               <label> Country 🏳️</label>
+                               <label> Country</label>
                                <input
                                  type="text"
                                  name="country"
@@ -198,7 +207,7 @@ class Create extends Component {
                                />
                              </fieldset>
                              <fieldset>
-                               <label> Near? 🍺</label>
+                               <label> Near? </label>
                                <input
                                  type="text"
                                  name="nearby"
@@ -209,7 +218,7 @@ class Create extends Component {
                                />
                              </fieldset>
                              <label>
-                               <label> +/- </label>
+                               <label> Consistence </label>
                                <select
                                  name="consistence"
                                  onChange={event => this.handleChange(event)}
@@ -275,7 +284,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label>⬅ Direction ➡</label>
+                               <label>Direction </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="wave_direction"
@@ -314,7 +323,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label> Weather 🔆</label>
+                               <label> Weather </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="weather"
@@ -346,7 +355,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label> Break 🌊</label>
+                               <label> Break </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="break_type"
@@ -393,7 +402,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label>Level ⚠️</label>
+                               <label>Level </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="level"
@@ -427,7 +436,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label> Vibe? 🤙🏾</label>
+                               <label> Vibe? </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="vibe"
@@ -453,7 +462,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label>Rate it! ⭐️</label>
+                               <label>Rate it! </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="rating"
@@ -496,57 +505,68 @@ class Create extends Component {
                                  </option>
                                </select>
                              </label>
-                              <label>Upload photo</label>
-                             <input
-                               type="button"
-                               value="Upload photo"
-                               onClick={() => this.upload()}
-                             />
+                             <fieldset>
+                               <label>Comment it!</label>
+                               <input
+                                 type="text"
+                                 name="text"
+                                 value={this.state.text}
+                                 onChange={event => this.handleChange(event)}
+                                 placeholder="Comment"
+                                 required
+                               />
+                             </fieldset>
+                             
+
                              <input
                                className="submit-button"
                                type="button"
                                value="Create spot!"
                                onClick={e => this.handleFormSubmit(e)}
                              />
-                             <input
-                               type="file"
-                               name="photo"
-                               onChange={e => this.onPhotoChange(e)}
-                             />
                            </div>
-                           <div className="cont-map">
-                             <GmapsLocate
-                               className="map"
-                               coordinates={this.state.coordinates}
-                               getLocation={this.getLocation}
-                             />
-                             <div className="cloudinary"></div>
-                           </div>
-                         </form> 
+                         </form>
                        </div>
                      );
                    } else {
                      return (
-                       <div
-                         className="container oculto-create mostrar-create"
-                        //  onClick={() => this.props.history.push("/")}
-                       >
+                       <div className="container oculto-create mostrar-create">
+                         <div className="cont-map">
+                           <i
+                             className="material-icons back"
+                             onClick={() => this.props.history.push("/")}
+                           >
+                             arrow_back
+                           </i>
+                           <div className="cloudinary">
+                             {this.state.imageURL && (
+                               <img src={this.state.imageURL} />
+                             )}
+                             <input
+                               type="button"
+                               value="Upload photo"
+                               onClick={() => this.upload()}
+                             />
+                             <input
+                               type="file"
+                               name="photo"
+                               onChange={e => this.onPhotoChange(e)}
+                             />
+                           </div>
+                           <GmapsLocate
+                             className="map"
+                             coordinates={this.state.coordinates}
+                             getLocation={this.getLocation}
+                           />
+                         </div>
                          <form
                            onSubmit={event =>
                              this.handleFormSubmit(event, "image")
                            }
                          >
-                           <div className="backImg">
-                             {this.state.imageURL && (
-                               <img src={this.state.imageURL} />
-                             )}
-                           </div>
                            <div className="icons">
                              <fieldset>
-                               <label>
-                                 Name
-                                 <i class="medium material-icons">thumb_up</i>
-                               </label>
+                               <label>Spot name</label>
                                <input
                                  type="text"
                                  name="name"
@@ -557,18 +577,7 @@ class Create extends Component {
                                />
                              </fieldset>
                              <fieldset>
-                               <label>T</label>
-                               <input
-                                 type="text"
-                                 name="text"
-                                 value={this.state.text}
-                                 onChange={event => this.handleChange(event)}
-                                 placeholder="Comment"
-                                 required
-                               />
-                             </fieldset>
-                             <fieldset>
-                               <label> Country 🏳️</label>
+                               <label> Country</label>
                                <input
                                  type="text"
                                  name="country"
@@ -579,7 +588,7 @@ class Create extends Component {
                                />
                              </fieldset>
                              <fieldset>
-                               <label> Near? 🍺</label>
+                               <label> Near? </label>
                                <input
                                  type="text"
                                  name="nearby"
@@ -590,7 +599,7 @@ class Create extends Component {
                                />
                              </fieldset>
                              <label>
-                               <label> +/- </label>
+                               <label> Consistence </label>
                                <select
                                  name="consistence"
                                  onChange={event => this.handleChange(event)}
@@ -656,7 +665,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label>⬅ Direction ➡</label>
+                               <label>Direction </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="wave_direction"
@@ -695,7 +704,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label> Weather 🔆</label>
+                               <label> Weather </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="weather"
@@ -727,7 +736,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label> Break 🌊</label>
+                               <label> Break </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="break_type"
@@ -774,7 +783,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label>Level ⚠️</label>
+                               <label>Level </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="level"
@@ -808,7 +817,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label> Vibe? 🤙🏾</label>
+                               <label> Vibe? </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="vibe"
@@ -834,7 +843,7 @@ class Create extends Component {
                                </select>
                              </label>
                              <label>
-                               <label>Rate it! ⭐️</label>
+                               <label>Rate it! </label>
                                <select
                                  onChange={event => this.handleChange(event)}
                                  name="rating"
@@ -877,30 +886,23 @@ class Create extends Component {
                                  </option>
                                </select>
                              </label>
-                             <input
-                               type="button"
-                               value="Upload photo"
-                               onClick={() => this.upload()}
-                             />
+                             <fieldset>
+                               <label>Comment it!</label>
+                               <input
+                                 type="text"
+                                 name="text"
+                                 value={this.state.text}
+                                 onChange={event => this.handleChange(event)}
+                                 placeholder="Comment"
+                                 required
+                               />
+                             </fieldset>
                              <input
                                className="submit-button"
                                type="button"
                                value="Create spot!"
                                onClick={e => this.handleFormSubmit(e)}
                              />
-                             <input
-                               type="file"
-                               name="photo"
-                               onChange={e => this.onPhotoChange(e)}
-                             />
-                           </div>
-                           <div className="cont-map">
-                             <GmapsLocate
-                               className="map"
-                               coordinates={this.state.coordinates}
-                               getLocation={this.getLocation}
-                             />
-                             <div className="cloudinary"></div>
                            </div>
                          </form>
                        </div>

@@ -2,11 +2,11 @@
   margin-top: 25px;
 }
 
-select {
+/* select {
   background: green;
   opacity: 0;
   transition: 0.3s all ease;
-}
+} */
 
 .container {
   display: flex;
@@ -46,14 +46,6 @@ select {
   /* border: 3px solid transparent; */
 }
 
-.backImg img {
-  border: 2px solid black;
-  border-radius: 3px;
-  width: 100%;
-  height: 100%;
-  opacity: 0.1;
-}
-
 .icons fieldset {
   border: 1px solid black;
   border-radius: 5px;
@@ -84,11 +76,9 @@ select {
   background: white;
   padding: 2%;
   margin: 5px;
-  border: 1.5px solid rgb(59, 125, 239);
-  border-radius: 10px;
-  box-shadow: 0 3px rgba(59, 125, 239, 0.6);
-  width: 90vw;
-  height: 80vh;
+  border: 1px solid blue;
+  width: 100%;
+  height: 90%;
   color: rgb(59, 125, 239);
   position: relative;
   display: flex;
@@ -112,15 +102,50 @@ select {
 }
 
 .cont-map .map {
-  width: 100% !important;
+  /* width: 100% !important;
   height: 100% !important;
-  z-index: 10;
+  z-index: 10; */
+  border: 1px solid green;
 }
 
 .cloudinary {
-  display: flex;
+  border: 1px solid red;
+  width: 348px;
+  height: 348px;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  overflow: hidden;
+  flex-direction: column; */
+  /* overflow: hidden; */
+}
+
+.material-icons.back {
+  color: black;
+  /* margin-left: -40px;
+  margin-top: -600px;
+  transition: 0.3s all ease;
+  font-size: 20px;
+  padding: 10px;
+  position: absolute; */
+}
+
+.material-icons.back:hover {
+  cursor: pointer;
+  /* font-size: 80px; */
+}
+
+.oculto-create {
+  position: fixed;
+  top: -100%;
+  transition: 0.6s all ease;
+}
+
+.oculto-create.mostrar-create {
+  top: 0;
+  background: white;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 25;
+  margin: 0;
 }
