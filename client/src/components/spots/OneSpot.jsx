@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { CoverageMap } from "istanbul-lib-coverage";
+
 
 export default class OneSpot extends Component {
   constructor(props) {

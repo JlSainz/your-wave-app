@@ -1,18 +1,12 @@
 .masonry-effect {
   margin-top: 70px;
-
-  // /* position:absolute;  */
-  // display: grid;
-  // grid-gap: 5px 5px;
-  // grid-template-columns: auto auto auto;
-
   columns: 6 200px;
   column-gap: 1rem;
   padding: 0 15px;
 
   .item {
     border-radius: 15px;
-    border: 0.88px solid black;
+    border: 1.3px solid #26547c;
     color: #000000;
     margin: 0 1rem 1rem 0;
     display: inline-block;
@@ -37,6 +31,11 @@
         display: grid;
         justify-items: center;
         align-content: center;
+        opacity: 0.5;
+        transition: 0.3s all ease;
+      }
+      .titlePhoto:hover {
+        color: #26547c;
       }
     }
   }
@@ -50,54 +49,28 @@
 }
 
 .item:hover {
-  border: 2px solid #26547c;
+  border: 3.1px solid #26547c;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.9);
   cursor: pointer;
 }
 
-// .spot {
-//   border: 1px solid black;
-//   border-radius: 10px;
-//   width: 100%;
-//   padding: 2px;
-//   text-align: center;
-//   background: transparent;
-//   transition: 0.3s all ease;
-// }
-
-// .spot:hover {
-//   border: 1px solid black;
-//   color: red;
-//   width: 101%;
-//   height: 101%;
-// }
-
-// .spot img {
-//   width: 100%;
-//   /* min-height: 101%; */
-// }
-
 div.one-spot {
   width: 100%;
   height: 100%;
-  /* transform: scale(0); */
   transform: scale(1);
   position: fixed;
   transition: 0.4s all ease;
-  /* top: 0; desde en medio */
   top: -100%;
 }
 
 div.one-spot.display {
   transform: scale(1);
-  /* //cambiar top */
   top: 0;
 }
 
 div.filter {
   width: 100vw;
   height: 100vh;
-  /* background: rgba(34, 193, 195, 0.95); */
   background: black;
   opacity: 0.75;
   position: fixed;
@@ -144,11 +117,6 @@ div.spot-info {
   width: 390px;
   height: 546px;
   margin-bottom: 20px;
-
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  // align-items: center;
 }
 
 .putoMap {
@@ -305,7 +273,3 @@ div.Evening .downRow {
   justify-content: space-between;
   align-items: center;
 }
-
-// .container-spot {
-
-// }

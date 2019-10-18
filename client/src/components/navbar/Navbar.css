@@ -13,9 +13,10 @@
   z-index: 10;
 }
 
-/* .search-bar {
-  
-} */
+p {
+  margin-right: 25px;
+  margin-left: 10px;
+}
 
 .nav-bar img {
   width: 60px;

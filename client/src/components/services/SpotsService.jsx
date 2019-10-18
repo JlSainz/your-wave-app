@@ -72,14 +72,7 @@ class SpotsService {
   };
 
   getForecast = () => {
-    return this.service.get('/getForecast')
-    .then(response => response.data)
-  }
-
-  // oneSpot = () => {
-  //   return this.service.get("/one").then(response => {
-  //     return response.data;
-  //   });
-  // };
+    return this.service.get("/getForecast").then(response => response.data);
+  };
 }
 export default SpotsService;

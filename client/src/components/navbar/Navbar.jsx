@@ -26,14 +26,12 @@ class Navbar extends Component {
           <div className="container-navbar-logged">
             <Link to="/">HOME</Link> |
             <Link onClick={this.handleLogout}>LOG OUT</Link> |
-            <Link to="/create">NEW SPOT</Link> |
-            <Link to="/profile">
-              <p>
-                {this.props.loggedInUser
-                  ? this.props.loggedInUser.username
-                  : null}
-              </p>
-            </Link>
+            <Link to="/create">NEW SPOT</Link>| <br />
+            <p>
+              {this.props.loggedInUser
+                ? this.props.loggedInUser.username
+                : null}
+            </p>
           </div>
         </nav>
       );

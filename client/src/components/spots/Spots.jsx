@@ -20,10 +20,6 @@ export default class Spots extends Component {
     this.preload();
   }
 
-  // componentDidMount(){
-
-  //   }
-
   displayOne(spot) {
     this.setState(
       {
@@ -80,9 +76,7 @@ export default class Spots extends Component {
     const lat = spot.location.coordinates[1];
     fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`, {
       headers: {
-        Authorization: ""
-        // "cbbe53d4-f12a-11e9-bb12-0242ac130004-cbbe54e2-f12a-11e9-bb12-0242ac130004"
-        // Authorization: `${process.env.REACT_APP_API_KEY1}`
+        Authorization: `${process.env.REACT_APP_API_KEY}`
       }
     })
       .then(response => response.json())
@@ -160,7 +154,6 @@ export default class Spots extends Component {
                   </span>
                 </div>
                 <div className="sRow">
-                  {/* <li>Commment: {this.state.selectedSpot.comment.text}</li> */}
                   <span>
                     {this.state.selectedSpot.wave_form}
                     <i class="fas fa-wind"></i>

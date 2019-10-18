@@ -4,14 +4,8 @@
 
 body {
   font-family: 'Muli', sans-serif;
-  /* background: rgb(243, 234, 183);
-  background: linear-gradient( 0deg, rgba(243, 234, 183, 1) 1%, rgba(184, 217, 229, 1) 100%); */
   background: rgba(249, 252, 243, 0.9);
 }
-
-/* html {
-    background: black;
-  } */
 
 .links {
   display: flex;
@@ -19,10 +13,6 @@ body {
   justify-content: flex-end;
   margin-top: 70px;
 }
-
-/* .App {
-  
-} */
 
 .oculto {
   position: fixed;
@@ -43,20 +33,3 @@ body {
 .oculto-login.mostrar-login {
   right: 0;
 }
-
-/* .oculto-create {
-  position: fixed;
-  top: -100%;
-  transition: 0.6s all ease;
-}
-
-.oculto-create.mostrar-create {
-  top: 0;
-  background: rgba(1, 1, 1, 0.75);
-  background: white;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 25;
-  margin: 0;
-} */

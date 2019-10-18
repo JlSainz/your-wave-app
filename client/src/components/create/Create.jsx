@@ -176,11 +176,6 @@ class Create extends Component {
                                    name="photo"
                                    onChange={e => this.onPhotoChange(e)}
                                  />
-                                 {/* <input
-                               type="button"
-                               value="Upload photo"
-                               onClick={() => this.upload()}
-                             /> */}
                                </div>
                              </div>
                              <GmapsLocate
@@ -609,11 +604,7 @@ class Create extends Component {
                                    name="photo"
                                    onChange={e => this.onPhotoChange(e)}
                                  />
-                                 {/* <input
-                               type="button"
-                               value="Upload photo"
-                               onClick={() => this.upload()}
-                             /> */}
+                         
                                </div>
                              </div>
                              <GmapsLocate

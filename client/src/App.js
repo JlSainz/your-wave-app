@@ -6,13 +6,12 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/services/Authservice";
 import Spots from "./components/spots/Spots";
-// import Create from "./components/create/Create";
 import Profile from "./components/Profile/Profile";
 import SpotCreation from "./components/SpotCreation";
 import SpotsService from "./components/services/SpotsService";
-import Searchbar from "./components/navbar/Searchbar";
 
-// import Gmaps from "./components/gmaps/Gmaps";
+
+
 
 class App extends Component {
   constructor(props) {
@@ -131,7 +130,7 @@ class App extends Component {
                 );
               }}
             />
-            <Route
+            {/* <Route
               exact
               path="/profile"
               render={() => {
@@ -141,7 +140,7 @@ class App extends Component {
                   </React.Fragment>
                 );
               }}
-            />
+            /> */}
           </Switch>
         </React.Fragment>
       );
