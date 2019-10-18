@@ -39,7 +39,7 @@
       }
     }
   }
-  @for $i from 1 through 36 {
+  @for $i from 1 through 100 {
     .item:nth-child(#{$i}) {
       $h: (random(350) + 200) + px;
       height: $h;
