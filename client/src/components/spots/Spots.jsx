@@ -44,7 +44,8 @@ export default class Spots extends Component {
   hideOne(spot) {
     this.setState({
       ...this.state,
-      showOneSpot: false
+      showOneSpot: false,
+      preload: false
     });
   }
 
@@ -77,14 +78,13 @@ export default class Spots extends Component {
   getForecast(spot) {
     const lng = spot.location.coordinates[0];
     const lat = spot.location.coordinates[1];
-    fetch(
-       `https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`,
-      {
-        headers: {
-          Authorization: `${process.env.REACT_APP_API_KEY}`
-        }
+    fetch(`https://api.stormglass.io/v1/weather/point?lat=${lat}&lng=${lng}`, {
+      headers: {
+        Authorization: ""
+        // "cbbe53d4-f12a-11e9-bb12-0242ac130004-cbbe54e2-f12a-11e9-bb12-0242ac130004"
+        // Authorization: `${process.env.REACT_APP_API_KEY1}`
       }
-    )
+    })
       .then(response => response.json())
       .then(forecast => {
         this.setState({
@@ -95,7 +95,9 @@ export default class Spots extends Component {
   }
 
   render() {
-    console.log(this.state.selectedSpot.updatedAt);
+    if (!this.state.preload) {
+      this.preload();
+    }
     if (this.state.forecast.hours) {
     }
     if (this.state.showOneSpot === false) {
@@ -135,30 +137,68 @@ export default class Spots extends Component {
             <div className="full-info">
               <div className="spot-info">
                 <ul>
-                  {/* <li>
-                    Date: 
-                    {this.state.selectedSpot.updatedAt.slice(0, 10)}
-                  </li> */}
-                  <li>
-                    {this.state.selectedSpot.name}( (
+                  <li className="center">
+                    {this.state.selectedSpot.name} (
                     {this.state.selectedSpot.country})
                   </li>
-                  <li>{this.state.selectedSpot.nearby} near</li>
-                  <li>Consistence: {this.state.selectedSpot.consistence}</li>
-                  <li>Commment: {this.state.selectedSpot.comment.text}</li>
-                  <li>Rating: {this.state.selectedSpot.comment.rating}</li>
-                  <li>Wave form: {this.state.selectedSpot.wave_form}</li>
-                  <li>{this.state.selectedSpot.wave_direction}</li>
-                  <li>{this.state.selectedSpot.weather} weather</li>
-                  <li>Period: {this.state.selectedSpot.period} s</li>
-                  <li>{this.state.selectedSpot.break_type}</li>
-                  <li>{this.state.selectedSpot.level} level</li>
-                  <li> {this.state.selectedSpot.vibe} vibe</li>
                 </ul>
-                <Gmaps
-                  className="Gmaps"
-                  coordinates={this.state.selectedSpot.location.coordinates}
-                />
+                <div className="topRow">
+                  <span>
+                    {this.state.selectedSpot.nearby} Nearby{" "}
+                    <i class="fas fa-utensils"></i>
+                  </span>
+
+                  <span>
+                    {this.state.selectedSpot.consistence}{" "}
+                    <i class="fas fa-check"></i>
+                  </span>
+
+                  <span>
+                    {" "}
+                    {this.state.selectedSpot.comment.rating}
+                    <i class="fas fa-star"></i>
+                  </span>
+                </div>
+                <div className="sRow">
+                  {/* <li>Commment: {this.state.selectedSpot.comment.text}</li> */}
+                  <span>
+                    {this.state.selectedSpot.wave_form}
+                    <i class="fas fa-wind"></i>
+                  </span>
+
+                  <span>
+                    {" "}
+                    {this.state.selectedSpot.wave_direction}{" "}
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                  </span>
+
+                  <span>
+                    {this.state.selectedSpot.weather} <i class="fas fa-sun"></i>
+                  </span>
+                </div>
+                <div className="bRow">
+                  <span>
+                    {" "}
+                    {this.state.selectedSpot.break_type}{" "}
+                    <i class="fas fa-water"></i>
+                  </span>
+
+                  <span>
+                    {this.state.selectedSpot.level}{" "}
+                    <i class="fas fa-exclamation"></i>
+                  </span>
+
+                  <span>
+                    {this.state.selectedSpot.vibe}{" "}
+                    <i class="fas fa-hand-spock"></i>
+                  </span>
+                </div>
+                <div className="putoMap">
+                  <Gmaps
+                    className="Gmaps"
+                    coordinates={this.state.selectedSpot.location.coordinates}
+                  />
+                </div>
               </div>
               <div className="forecast-info">
                 <div className="Morning">
@@ -236,143 +276,155 @@ export default class Spots extends Component {
                   )}
                 </div>
                 <div className="Midday">
-                  <div className="upRow">
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons">brightness_7</i>
-                          {this.state.forecast.hours[12].airTemperature[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[18].airTemperature[0].value.toFixed()}
-                          ºC
-                        </li>
-                      )}
-                    </ul>
+                  {this.state.preload ? (
+                    <React.Fragment>
+                      <div className="upRow">
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons">brightness_7</i>
+                              {this.state.forecast.hours[12].airTemperature[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[18].airTemperature[0].value.toFixed()}
+                              ºC
+                            </li>
+                          )}
+                        </ul>
 
-                    <p>Midday 11-17h</p>
+                        <p>Midday 11-17h</p>
 
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons">opacity</i>
-                          {this.state.forecast.hours[12].waterTemperature[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[18].waterTemperature[0].value.toFixed()}
-                          ºC
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                  <div className="midRow">
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="fas fa-water"></i>
-                          {this.state.forecast.hours[12].waveHeight[0].value.toFixed(
-                            1
-                          )}{" "}
-                          -
-                          {this.state.forecast.hours[18].waveHeight[0].value.toFixed(
-                            1
-                          )}{" "}
-                          m
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                  <div className="downRow">
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons"> autorenew</i>
-                          {this.state.forecast.hours[12].wavePeriod[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[18].wavePeriod[0].value.toFixed()}{" "}
-                          s
-                        </li>
-                      )}
-                    </ul>
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons"> arrow_upward</i>
-                          {this.state.forecast.hours[12].windSpeed[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[18].windSpeed[0].value.toFixed()}{" "}
-                          kph
-                        </li>
-                      )}
-                    </ul>
-                  </div>
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons">opacity</i>
+                              {this.state.forecast.hours[12].waterTemperature[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[18].waterTemperature[0].value.toFixed()}
+                              ºC
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                      <div className="midRow">
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="fas fa-water"></i>
+                              {this.state.forecast.hours[12].waveHeight[0].value.toFixed(
+                                1
+                              )}{" "}
+                              -
+                              {this.state.forecast.hours[18].waveHeight[0].value.toFixed(
+                                1
+                              )}{" "}
+                              m
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                      <div className="downRow">
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons"> autorenew</i>
+                              {this.state.forecast.hours[12].wavePeriod[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[18].wavePeriod[0].value.toFixed()}{" "}
+                              s
+                            </li>
+                          )}
+                        </ul>
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons"> arrow_upward</i>
+                              {this.state.forecast.hours[12].windSpeed[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[18].windSpeed[0].value.toFixed()}{" "}
+                              kph
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  ) : (
+                    <Preload />
+                  )}
                 </div>
                 <div className="Evening">
-                  <div className="upRow">
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons">brightness_7</i>
-                          {this.state.forecast.hours[18].airTemperature[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[24].airTemperature[0].value.toFixed()}
-                          ºC
-                        </li>
-                      )}
-                    </ul>
-                    <p>Evening 17-23h</p>
+                  {this.state.preload ? (
+                    <React.Fragment>
+                      <div className="upRow">
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons">brightness_7</i>
+                              {this.state.forecast.hours[18].airTemperature[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[24].airTemperature[0].value.toFixed()}
+                              ºC
+                            </li>
+                          )}
+                        </ul>
+                        <p>Evening 17-23h</p>
 
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons">opacity</i>
-                          {this.state.forecast.hours[18].waterTemperature[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[24].waterTemperature[0].value.toFixed()}
-                          ºC
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                  <div className="midRow">
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="fas fa-water"></i>
-                          {this.state.forecast.hours[18].waveHeight[0].value.toFixed(
-                            1
-                          )}{" "}
-                          -
-                          {this.state.forecast.hours[24].waveHeight[0].value.toFixed(
-                            1
-                          )}{" "}
-                          m
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                  <div className="downRow">
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons"> autorenew</i>
-                          {this.state.forecast.hours[18].wavePeriod[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[24].wavePeriod[0].value.toFixed()}{" "}
-                          s
-                        </li>
-                      )}
-                    </ul>
-                    <ul>
-                      {!!this.state.forecast.hours && (
-                        <li>
-                          <i class="material-icons"> arrow_upward</i>
-                          {this.state.forecast.hours[18].windSpeed[0].value.toFixed()}{" "}
-                          -
-                          {this.state.forecast.hours[24].windSpeed[0].value.toFixed()}{" "}
-                          kph
-                        </li>
-                      )}
-                    </ul>
-                  </div>
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons">opacity</i>
+                              {this.state.forecast.hours[18].waterTemperature[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[24].waterTemperature[0].value.toFixed()}
+                              ºC
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                      <div className="midRow">
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="fas fa-water"></i>
+                              {this.state.forecast.hours[18].waveHeight[0].value.toFixed(
+                                1
+                              )}{" "}
+                              -
+                              {this.state.forecast.hours[24].waveHeight[0].value.toFixed(
+                                1
+                              )}{" "}
+                              m
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                      <div className="downRow">
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons"> autorenew</i>
+                              {this.state.forecast.hours[18].wavePeriod[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[24].wavePeriod[0].value.toFixed()}{" "}
+                              s
+                            </li>
+                          )}
+                        </ul>
+                        <ul>
+                          {!!this.state.forecast.hours && (
+                            <li>
+                              <i class="material-icons"> arrow_upward</i>
+                              {this.state.forecast.hours[18].windSpeed[0].value.toFixed()}{" "}
+                              -
+                              {this.state.forecast.hours[24].windSpeed[0].value.toFixed()}{" "}
+                              kph
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  ) : (
+                    <Preload />
+                  )}
                 </div>
               </div>
             </div>

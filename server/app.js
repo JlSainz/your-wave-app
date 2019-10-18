@@ -15,7 +15,7 @@ mongoose.Promise = Promise;
 mongoose
   .connect(DBURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log(`Connected to Mongo on ${DBURL}`);
+    console.log("Connected to Monguer ");
   })
   .catch(err => {
     console.error("Error connecting to mongo", err);
@@ -60,8 +60,7 @@ app.use(
 );
 require("./passport")(app);
 
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "hbs");
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 

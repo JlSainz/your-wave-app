@@ -103,7 +103,6 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <React.Fragment>
-          {/* <Redirect to="/" /> */}
           <Navbar
             className="App-header"
             loggedInUser={this.state.loggedInUser}

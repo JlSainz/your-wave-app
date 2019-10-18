@@ -2,7 +2,12 @@
   box-sizing: border-box;
 }
 
-body {}
+body {
+  font-family: 'Muli', sans-serif;
+  /* background: rgb(243, 234, 183);
+  background: linear-gradient( 0deg, rgba(243, 234, 183, 1) 1%, rgba(184, 217, 229, 1) 100%); */
+  background: rgba(249, 252, 243, 0.9);
+}
 
 /* html {
     background: black;

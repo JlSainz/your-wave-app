@@ -18,11 +18,11 @@ export default class OneSpot extends Component {
     const { spot } = this.state;
     return (
       <div className="spot" onClick={e => this.props.display(e)}>
-        <img src={spot.imageURL} alt="spot pic" />
+        <img src={spot.imageURL} alt="spot pic"  />
         <div className="titlePhoto">
           <h2>
-            {spot.name}
-            {spot.country}
+            {spot.name} {""}(
+            {spot.country})
           </h2>
         </div>
       </div>

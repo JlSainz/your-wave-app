@@ -1,13 +1,24 @@
 .map {
-  width: 350px;
-  height: 350px;
-  margin-left: 10px;
+  width: 200px;
+  height: 200px;
+  margin-left: 80px;
+  border: 1px solid black;
+  background: cover;
 }
 
 .map .location-search-input {
   outline: 0;
   width: 100%;
   margin-top: 3px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding: 3px;
+  transition: 0.3s all ease;
+  border: 1px solid black;
+}
+
+.map .location-search-input:hover {
+  border: 1px solid #26547c;
 }
 
 .location-search-input {
