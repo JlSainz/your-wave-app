@@ -19,7 +19,6 @@ class Navbar extends Component {
     if (this.props.loggedInUser) {
       return (
         <nav className="nav-bar">
-          {/* <div className="img"> */}
           <img src="./images/logo.png" alt="logo" />
           {/* </div> */}
           <SearchBar className="search-bar" search={this.props.search} />

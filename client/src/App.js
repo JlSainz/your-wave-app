@@ -6,12 +6,10 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import AuthService from "./components/services/Authservice";
 import Spots from "./components/spots/Spots";
-import Profile from "./components/Profile/Profile";
+// import Profile from "./components/Profile/Profile";
 import SpotCreation from "./components/SpotCreation";
 import SpotsService from "./components/services/SpotsService";
-
-
-
+import Home from "./components/Home/Home";
 
 class App extends Component {
   constructor(props) {
@@ -114,8 +112,16 @@ class App extends Component {
               path="/"
               render={() => (
                 <div className="App">
+                  <Home />
+                </div>
+              )}
+            />
+            <Route
+              exact
+              path="/spots"
+              render={() => (
+                <div className="App">
                   <Spots spots={this.state.filtered} />
-                  <Route exact path="/profile" render={() => <Profile />} />
                 </div>
               )}
             />
@@ -130,17 +136,6 @@ class App extends Component {
                 );
               }}
             />
-            {/* <Route
-              exact
-              path="/profile"
-              render={() => {
-                return (
-                  <React.Fragment>
-                    <Profile />
-                  </React.Fragment>
-                );
-              }}
-            /> */}
           </Switch>
         </React.Fragment>
       );
@@ -156,17 +151,42 @@ class App extends Component {
             <Switch>
               <Route
                 exact
+                path="/"
+                render={() => (
+                  <div className="App">
+                    <Home />
+                  </div>
+                )}
+              />
+              <Route
+                exact
                 path="/signup"
-                render={() => <Signup getUser={this.getUser} />}
+                render={() => (
+                  <div className="App">
+                    <Signup getUser={this.getUser} />
+                    <Home />
+                  </div>
+                )}
               />
               <Route
                 exact
                 path="/login"
-                render={() => <Login getUser={this.getUser} />}
+                render={() => (
+                  <div className="App">
+                    <Login getUser={this.getUser} />
+                    <Home />
+                  </div>
+                )}
               />
+              <Route
+                exact
+                path="/spots"
+                render={() => <Spots spots={this.state.filtered} />}
+              />
+              <Route exact path="/" render={() => <Home />} />
             </Switch>
-            <Spots spots={this.state.filtered} />
           </div>
+          {/* <Spots spots={this.state.filtered} /> */}
         </React.Fragment>
       );
     }

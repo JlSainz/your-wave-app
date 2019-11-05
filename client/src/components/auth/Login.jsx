@@ -55,27 +55,31 @@ class Login extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <h3>Sign in!</h3>
             <fieldset>
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={this.state.email}
-                onChange={e => this.handleChange(e)}
-                placeholder="email..."
-                required
-              />
+              <label>
+                <i class="material-icons">email</i>
+                <input
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="Email"
+                  required
+                />
+              </label>
             </fieldset>
 
             <fieldset>
-              <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={e => this.handleChange(e)}
-                placeholder="Password"
-                required
-              />
+              <label>
+                <i class="material-icons">lock</i>
+                <input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="********"
+                  required
+                />
+              </label>
             </fieldset>
             <div className="fatherbtn">
               <input className="button" type="submit" value="Log in" />
@@ -90,27 +94,31 @@ class Login extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <h3>Sign in!</h3>
             <fieldset>
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={this.state.email}
-                onChange={e => this.handleChange(e)}
-                placeholder="email..."
-                required
-              />
+              <label>
+                <i class="material-icons">email</i>
+                <input
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="Email"
+                  required
+                />
+              </label>
             </fieldset>
 
             <fieldset>
-              <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={e => this.handleChange(e)}
-                placeholder="Password"
-                required
-              />
+              <label>
+                <i class="material-icons">lock</i>
+                <input
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="********"
+                  required
+                />
+              </label>
             </fieldset>
             <div className="fatherbtn">
               <input className="button" type="submit" value="Log in" />

@@ -3,7 +3,6 @@ import "./Spots.scss";
 import Gmaps from "./../gmaps/Gmaps";
 import OneSpot from "./OneSpot";
 import SpotsService from "./../services/SpotsService";
-import { directive } from "@babel/types";
 import Preload from "../Preload/Preload";
 
 export default class Spots extends Component {
@@ -94,26 +93,28 @@ export default class Spots extends Component {
       return (
         <div className="container-spot">
           <div className="one-spot display">
-            <div className="filter">
-              <i
-                className="material-icons back-spot"
-                onClick={() => this.hideOne()}
-              >
-                arrow_back
-              </i>
-            </div>
+            <div className="filter"></div>
             <div className="full-info">
               <div className="spot-info">
+                <i
+                  className="material-icons back-spot"
+                  onClick={() => this.hideOne()}
+                >
+                  arrow_back
+                </i>
                 <ul>
                   <li className="center">
                     {this.state.selectedSpot.name} (
                     {this.state.selectedSpot.country})
                   </li>
                 </ul>
+                <img src={this.state.selectedSpot.imageURL} alt="spot-photo" />
+                <h2>Spot info</h2>
                 <div className="topRow">
                   <span>
+                    {" "}
                     {this.state.selectedSpot.nearby} Nearby{" "}
-                    <i class="fas fa-utensils"></i>
+                    <i class="fas fa-utensils"></i>{" "}
                   </span>
 
                   <span>
@@ -166,7 +167,14 @@ export default class Spots extends Component {
                     coordinates={this.state.selectedSpot.location.coordinates}
                   />
                 </div>
+                <div className="comment">
+                  <h3>"{this.state.selectedSpot.comment.text}"</h3>
+                  <p>Posted by: "Anonymous"</p>
+                </div>
               </div>
+              <span className="for">
+                <h2>Today's forecast</h2>
+              </span>
               <div className="forecast-info">
                 <div className="Morning">
                   {this.state.preload ? (
@@ -183,7 +191,7 @@ export default class Spots extends Component {
                             </li>
                           )}
                         </ul>
-                        <p>Morning 05-11h</p>
+                        <p>Morning 05 - 11h</p>
                         <ul>
                           {!!this.state.forecast.hours && (
                             <li>
@@ -200,11 +208,11 @@ export default class Spots extends Component {
                         <ul>
                           {!!this.state.forecast.hours && (
                             <li>
-                              <i class="fas fa-water"></i>
+                              <i class="fas fa-water"></i>{" "}
                               {this.state.forecast.hours[4].waveHeight[0].value.toFixed(
                                 1
                               )}{" "}
-                              -
+                              -{" "}
                               {this.state.forecast.hours[12].waveHeight[0].value.toFixed(
                                 1
                               )}{" "}
@@ -258,7 +266,7 @@ export default class Spots extends Component {
                           )}
                         </ul>
 
-                        <p>Midday 11-17h</p>
+                        <p>Midday 11 - 17h</p>
 
                         <ul>
                           {!!this.state.forecast.hours && (
@@ -276,11 +284,11 @@ export default class Spots extends Component {
                         <ul>
                           {!!this.state.forecast.hours && (
                             <li>
-                              <i class="fas fa-water"></i>
+                              <i class="fas fa-water"></i>{" "}
                               {this.state.forecast.hours[12].waveHeight[0].value.toFixed(
                                 1
                               )}{" "}
-                              -
+                              -{" "}
                               {this.state.forecast.hours[18].waveHeight[0].value.toFixed(
                                 1
                               )}{" "}
@@ -333,7 +341,7 @@ export default class Spots extends Component {
                             </li>
                           )}
                         </ul>
-                        <p>Evening 17-23h</p>
+                        <p>Evening 17 - 23h</p>
 
                         <ul>
                           {!!this.state.forecast.hours && (
@@ -351,11 +359,11 @@ export default class Spots extends Component {
                         <ul>
                           {!!this.state.forecast.hours && (
                             <li>
-                              <i class="fas fa-water"></i>
+                              <i class="fas fa-water"></i>{" "}
                               {this.state.forecast.hours[18].waveHeight[0].value.toFixed(
                                 1
                               )}{" "}
-                              -
+                              -{" "}
                               {this.state.forecast.hours[24].waveHeight[0].value.toFixed(
                                 1
                               )}{" "}

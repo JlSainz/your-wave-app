@@ -67,46 +67,42 @@ class Signup extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <h3>Create your account!</h3>
             <fieldset>
-              <label className="label">Username</label>
+              <label>
+                {" "}
+                <i class="material-icons">perm_identity</i>
+              </label>
               <input
                 type="text"
                 name="username"
                 value={this.state.username}
                 onChange={e => this.handleChange(e)}
-                placeholder="Name..."
+                placeholder="Name"
                 required
               />
             </fieldset>
             <fieldset>
-              <label className="label">Lastname</label>
-              <input
-                type="text"
-                name="lastname"
-                value={this.state.lastname}
-                onChange={e => this.handleChange(e)}
-                placeholder="Last name..."
-                required
-              />
-            </fieldset>
-            <fieldset>
-              <label className="label">Email</label>
+              <label>
+                <i class="material-icons">email</i>
+              </label>
               <input
                 type="text"
                 name="email"
                 value={this.state.email}
                 onChange={e => this.handleChange(e)}
-                placeholder="Email..."
+                placeholder="Email"
                 required
               />
             </fieldset>
             <fieldset>
-              <label className="label">Password</label>
+              <label>
+                <i class="material-icons">lock</i>
+              </label>
               <input
                 type="password"
                 name="password"
                 value={this.state.password}
                 onChange={e => this.handleChange(e)}
-                placeholder="Password..."
+                placeholder="********"
                 required
               />
             </fieldset>
@@ -123,46 +119,42 @@ class Signup extends Component {
           <form onSubmit={this.handleFormSubmit}>
             <h3>Create your account!</h3>
             <fieldset>
-              <label className="label">Username</label>
+              <label>
+                {" "}
+                <i class="material-icons">perm_identity</i>
+              </label>
               <input
                 type="text"
                 name="username"
                 value={this.state.username}
                 onChange={e => this.handleChange(e)}
-                placeholder="Name..."
+                placeholder="Name"
                 required
               />
             </fieldset>
             <fieldset>
-              <label className="label">Lastname</label>
-              <input
-                type="text"
-                name="lastname"
-                value={this.state.lastname}
-                onChange={e => this.handleChange(e)}
-                placeholder="Last name..."
-                required
-              />
-            </fieldset>
-            <fieldset>
-              <label className="label">Email</label>
+              <label>
+                <i class="material-icons">email</i>
+              </label>
               <input
                 type="text"
                 name="email"
                 value={this.state.email}
                 onChange={e => this.handleChange(e)}
-                placeholder="Email..."
+                placeholder="Email"
                 required
               />
             </fieldset>
             <fieldset>
-              <label className="label">Password</label>
+              <label>
+                <i class="material-icons">lock</i>
+              </label>
               <input
                 type="password"
                 name="password"
                 value={this.state.password}
                 onChange={e => this.handleChange(e)}
-                placeholder="Password..."
+                placeholder="********"
                 required
               />
             </fieldset>

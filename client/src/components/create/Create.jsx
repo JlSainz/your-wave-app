@@ -82,7 +82,7 @@ class Create extends Component {
                      imageURL,
                      () => {
                      this.props.getAllSpotsFn(() => {
-                       this.props.history.push("/");
+                       this.props.history.push("/spots");
                      })}
                    );
 
@@ -579,47 +579,26 @@ class Create extends Component {
                      return (
                        <div className="container oculto-create mostrar-create">
                          <div className="full oculto-create mostrar-create ">
-                           <i
-                             className="material-icons back"
-                             onClick={() => this.props.history.push("/")}
-                           >
-                             arrow_back
-                           </i>
-                           <div className="left">
-                             <div className="cloudinary">
-                               {this.state.imageURL && (
-                                 <img src={this.state.imageURL} />
-                               )}
-
-                               <div className="upload">
-                                 <i
-                                   class="fas fa-cloud-upload-alt"
-                                   onClick={() => this.upload()}
-                                 ></i>
-                               </div>
-                               <div className="align">
-                                 <input
-                                   className="ok"
-                                   type="file"
-                                   name="photo"
-                                   onChange={e => this.onPhotoChange(e)}
-                                 />
-                         
-                               </div>
-                             </div>
+                           <div className="todo">
+                             <i
+                               className="material-icons back"
+                               onClick={() => this.props.history.push("/spots")}
+                             >
+                               arrow_back
+                             </i>
+                             <h1>Post your Spot!</h1>
+                             <h2>1) Locate it</h2>
                              <GmapsLocate
                                className="map"
                                coordinates={this.state.coordinates}
                                getLocation={this.getLocation}
                              />
-                           </div>
-
-                           <form
-                             onSubmit={event =>
-                               this.handleFormSubmit(event, "image")
-                             }
-                           >
-                             <div className="icons">
+                             <h2>2) Info</h2>
+                             <form
+                               onSubmit={event =>
+                                 this.handleFormSubmit(event, "image")
+                               }
+                             >
                                <div className="firstRow">
                                  <fieldset>
                                    <label>Spot name</label>
@@ -648,7 +627,7 @@ class Create extends Component {
                                    />
                                  </fieldset>
                                  <fieldset>
-                                   <label> Near? </label>
+                                   <label> What's Near? </label>
                                    <input
                                      type="text"
                                      name="nearby"
@@ -979,28 +958,48 @@ class Create extends Component {
                                    </select>
                                  </label>
                                </div>
-                               <div className="comment">
-                                 <fieldset>
-                                   <textarea
-                                     type="text"
-                                     name="text"
-                                     value={this.state.text}
-                                     onChange={event =>
-                                       this.handleChange(event)
-                                     }
-                                     placeholder="Your comment here...."
-                                     required
-                                   />
-                                 </fieldset>
+                               <fieldset className="cabron">
+                                 <textarea
+                                   type="text"
+                                   name="text"
+                                   value={this.state.text}
+                                   onChange={event => this.handleChange(event)}
+                                   placeholder="Your comment here...."
+                                   required
+                                 />
+                               </fieldset>
+                             </form>
+                             <h2>3) Upload photo </h2>
+                             <p>
+                               (Choose file and click the cloud to upload it)
+                             </p>
+                             <div className="cloudinary">
+                               {this.state.imageURL && (
+                                 <img src={this.state.imageURL} />
+                               )}
+
+                               <div className="upload">
+                                 <i
+                                   class="fas fa-cloud-upload-alt"
+                                   onClick={() => this.upload()}
+                                 ></i>
                                </div>
-                               <input
-                                 className="submit-button"
-                                 type="button"
-                                 value="Create spot!"
-                                 onClick={e => this.handleFormSubmit(e)}
-                               />
+                               <div className="align">
+                                 <input
+                                   className="ok"
+                                   type="file"
+                                   name="photo"
+                                   onChange={e => this.onPhotoChange(e)}
+                                 />
+                               </div>
                              </div>
-                           </form>
+                             <input
+                               className="submit-button"
+                               type="button"
+                               value="Create spot!"
+                               onClick={e => this.handleFormSubmit(e)}
+                             />
+                           </div>
                          </div>
                        </div>
                      );

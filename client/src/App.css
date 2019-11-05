@@ -4,7 +4,8 @@
 
 body {
   font-family: 'Muli', sans-serif;
-  background: rgba(249, 252, 243, 0.9);
+  background: #ffffff;
+  /* background: rgba(249, 252, 243, 0.9); */
 }
 
 .links {
