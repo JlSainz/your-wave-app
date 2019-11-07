@@ -28,6 +28,7 @@ export default class Home extends Component {
         <div className="spots-display">
           <h2>Check people favourite spots !</h2>
           <img src="/images/spots.png" alt="spots" />
+
           <Link to="/spots">See all</Link>
         </div>
         <div className="surf-camp">
