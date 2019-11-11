@@ -78,9 +78,19 @@ router.get("/currentuser", (req, res, next) => {
   }
 });
 
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.status(200).json({ message: "logged out" });
+// router.get("/logout", (req, res) => {
+//   req.logout();
+//   res.status(200).json({ message: "logged out" });
+// });
+
+router.get("/logout", function(req, res) {
+  req.logOut();
+  res.status(200).clearCookie("connect.sid", {
+    path: "/"
+  });
+  req.session.destroy(function(err) {
+    res.redirect("/spots");
+  });
 });
 
 router.use((err, req, res, next) => {

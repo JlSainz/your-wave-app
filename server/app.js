@@ -58,8 +58,8 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
-require("./passport")(app);
 
+require("./passport")(app);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
@@ -71,6 +71,13 @@ app.use("/", indexRouter);
 
 app.use((req, res) => {
   res.sendFile(__dirname + "/public/index.html");
+});
+
+app.get("/logout", function(req, res) {
+  req.logOut();
+  req.session.destroy(function(err) {
+    res.redirect("/"); //Inside a callback… bulletproof!
+  });
 });
 
 module.exports = app;
