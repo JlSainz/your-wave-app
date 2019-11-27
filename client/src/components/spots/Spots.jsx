@@ -4,7 +4,6 @@ import Gmaps from "./../gmaps/Gmaps";
 import OneSpot from "./OneSpot";
 import SpotsService from "./../services/SpotsService";
 import Preload from "../Preload/Preload";
-import SearchBar from "../navbar/Searchbar";
 
 export default class Spots extends Component {
   constructor(props) {
