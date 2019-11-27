@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Home.scss";
-import Spots from "../spots/Spots";
+// import Spots from "../spots/Spots";
 
 export default class Home extends Component {
   render() {

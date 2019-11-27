@@ -35,3 +35,46 @@
   object-fit: cover;
   object-position: center;
 }
+
+@media (min-width: 375px) and (max-width: 667px) {
+  .item {
+    border: 1px solid black;
+    width: 352px;
+    height: 500px;
+    margin: 5px;
+    margin-bottom: 10px;
+    margin-left: 12px;
+    margin-top: 10px;
+    text-align: center;
+    transition: 0.2s all ease;
+  }
+
+  .item:hover {
+    border: 1.4px solid black;
+    box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+  }
+
+  .spot h2 {
+    margin-top: 20px;
+    font-weight: bold;
+    line-height: 20px;
+  }
+
+  .spot p {
+    margin-top: 5px;
+  }
+
+  .spot {
+    width: 350px;
+    height: 400px;
+    text-align: center;
+  }
+
+  .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}

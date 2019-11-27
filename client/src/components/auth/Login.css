@@ -75,3 +75,76 @@ form .button {
   display: flex;
   justify-content: center;
 }
+
+@media (min-width: 375px) and (max-width: 667px) {
+  .container-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background: rgba(1, 1, 1, 0.7);
+    z-index: 1;
+    margin-top: 15px;
+  }
+  .container-login form {
+    background: white;
+    padding: 15px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 87vw;
+    height: 70vh;
+    margin-top: 30px;
+  }
+  .container-login fieldset {
+    padding: 9px;
+    background: transparent;
+  }
+  .container-login h3 {
+    margin-bottom: 40px;
+    text-align: center;
+    text-align: center;
+    font-size: 45px;
+  }
+  .container-login label {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 5px;
+  }
+  .container-login i {
+    font-size: 24px;
+    padding: 10px;
+    background: black;
+    color: white;
+  }
+  .container-login input {
+    font-size: 20px;
+    margin-left: 10px;
+    line-height: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    outline: 0;
+  }
+  /* .container-login input:hover {
+  font-weight: bold;
+} */
+  form .button {
+    /* border: 1px solid blue; */
+    background: black;
+    color: black;
+    /* border-radius: 5px; */
+  }
+  .fatherbtn {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

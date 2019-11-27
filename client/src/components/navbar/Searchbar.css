@@ -34,7 +34,7 @@
   .search-form {
     border: 1px solid whitesmoke;
     border-radius: 10px;
-    display: flex;
+    display: none;
     align-items: center;
   }
   .search-form input {
