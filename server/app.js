@@ -28,7 +28,13 @@ const debug = require("debug")(
 
 const app = express();
 
-var whitelist = ["http://localhost:3000", "https://your-wave.herokuapp.com/"];
+var whitelist = [
+  "http://localhost:3000",
+  "https://your-wave.herokuapp.com/",
+  "https://your-wave.herokuapp.com/spots",
+  "https://your-wave.herokuapp.com/spots",
+  "http://localhost:3010"
+];
 var corsOptions = {
   origin: function(origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
