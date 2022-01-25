@@ -12,6 +12,6 @@ Open source, everybody can check the info of the spots, and if you sign up you c
 Just to make it easier to make that difficult decission!!
 
 
-Jet in progress...
+Still in progress...
 
 https://your-wave.herokuapp.com/
